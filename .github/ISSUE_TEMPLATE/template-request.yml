@@ -1,0 +1,36 @@
+name: Template request
+description: Suggest a new Python plotting template with a clean-room path.
+title: "Template request: "
+labels: ["template", "enhancement"]
+body:
+  - type: input
+    id: chart-task
+    attributes:
+      label: Chart task
+      placeholder: "Compare before/after measurements across paired samples"
+    validations:
+      required: true
+  - type: textarea
+    id: data-shape
+    attributes:
+      label: Expected data shape
+      description: Describe columns, dimensions, and units. Use synthetic data, not private data.
+      placeholder: |
+        columns: sample_id, condition, value
+        rows: roughly 30 samples x 2 conditions
+    validations:
+      required: true
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: Why this is useful
+      description: Explain the communication task and what the chart should not overstate.
+    validations:
+      required: true
+  - type: checkboxes
+    id: provenance
+    attributes:
+      label: Provenance
+      options:
+        - label: This request does not ask maintainers to copy a paper figure, private image, or unclear third-party template.
+          required: true

@@ -1,0 +1,47 @@
+name: First-use feedback
+description: Report a first run of python-plotting-skill without sharing private data.
+title: "First-use feedback: "
+labels: ["feedback", "first-use"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying the skill. Please keep private data, local paths, tokens, and personal information out of the issue.
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "Python 3.11.8"
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or release
+      placeholder: "main @ <short sha>"
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands run
+      description: Paste commands only after removing private paths.
+      placeholder: |
+        python -m pip install -e ".[test]"
+        python scripts/render_gallery.py --out /tmp/python-plotting-skill-gallery --formats png,svg
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened?
+      description: Include redacted errors or confusing steps.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed private data, local absolute paths, emails, and tokens.
+          required: true

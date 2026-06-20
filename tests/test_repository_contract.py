@@ -38,6 +38,8 @@ def test_core_repository_files_exist_and_are_bilingual():
         "docs/application-evidence.md",
         "skills/python-plotting-skill/SKILL.md",
         ".github/workflows/quality.yml",
+        ".github/ISSUE_TEMPLATE/first-use-feedback.yml",
+        ".github/ISSUE_TEMPLATE/template-request.yml",
     ]
     for file_name in required:
         path = ROOT / file_name
@@ -48,6 +50,8 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "[English](README.md)" in read("README.zh-CN.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
+    assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
+    assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
 
 
 def test_skill_frontmatter_and_workflow_are_specific():
