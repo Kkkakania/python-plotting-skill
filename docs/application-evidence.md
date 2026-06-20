@@ -18,6 +18,10 @@ Open Source eligibility, credits, or ChatGPT Pro access.
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
   GitHub Actions quality workflow.
+- First-use feedback is tracked in
+  [`python-plotting-skill#1`](https://github.com/Kkkakania/python-plotting-skill/issues/1);
+  small v0.2 template requests are tracked in
+  [`python-plotting-skill#2`](https://github.com/Kkkakania/python-plotting-skill/issues/2).
 
 ## What Codex would help with
 

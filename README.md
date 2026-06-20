@@ -2,6 +2,9 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![Quality](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml/badge.svg)](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 `python-plotting-skill` is a small Codex skill for choosing and generating
 Python scientific figures from clean, reproducible scripts.
 
@@ -28,6 +31,22 @@ bash scripts/release_check.sh
 
 The renderer writes deterministic PNG and SVG outputs. It does not read private
 data by default.
+
+## Gallery preview
+
+These examples are generated from synthetic data with a fixed seed. They are
+meant to show chart structure, not real research results.
+
+<table>
+  <tr>
+    <td><img src="docs/gallery/line_trend.png" width="220" alt="Line trend"><br>Line trend</td>
+    <td><img src="docs/gallery/confidence_band.png" width="220" alt="Confidence band"><br>Confidence band</td>
+  </tr>
+  <tr>
+    <td><img src="docs/gallery/heatmap_matrix.png" width="220" alt="Heatmap matrix"><br>Heatmap matrix</td>
+    <td><img src="docs/gallery/small_multiples.png" width="220" alt="Small multiples"><br>Small multiples</td>
+  </tr>
+</table>
 
 ## Template set
 
@@ -75,6 +94,11 @@ a runnable script, export clean figures, and mention limitations.
 - [Agent workflow](docs/agent-workflow.md)
 - [Provenance policy](docs/provenance-policy.md)
 - [Application evidence](docs/application-evidence.md)
+
+## Feedback
+
+- [First-use feedback](https://github.com/Kkkakania/python-plotting-skill/issues/1)
+- [v0.2 template requests](https://github.com/Kkkakania/python-plotting-skill/issues/2)
 
 ## License
 

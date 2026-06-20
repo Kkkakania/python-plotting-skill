@@ -2,6 +2,9 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![Quality](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml/badge.svg)](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 `python-plotting-skill` 是一个面向 Codex 的 Python 科研绘图 Skill。它的目标很具体：让 Agent 先判断数据形状和表达目的，再选择合适的 Matplotlib 图形方案，最后生成可运行、可复查的绘图脚本。
 
 它和另外两个仓库配合使用：
@@ -21,6 +24,21 @@ bash scripts/release_check.sh
 ```
 
 默认 gallery 使用固定随机种子的合成数据，不读取你的私有数据。
+
+## Gallery 预览
+
+下面几张图都由合成数据生成，只用来展示图形结构和导出效果，不代表真实实验结论。
+
+<table>
+  <tr>
+    <td><img src="docs/gallery/line_trend.png" width="220" alt="Line trend"><br>Line trend</td>
+    <td><img src="docs/gallery/confidence_band.png" width="220" alt="Confidence band"><br>Confidence band</td>
+  </tr>
+  <tr>
+    <td><img src="docs/gallery/heatmap_matrix.png" width="220" alt="Heatmap matrix"><br>Heatmap matrix</td>
+    <td><img src="docs/gallery/small_multiples.png" width="220" alt="Small multiples"><br>Small multiples</td>
+  </tr>
+</table>
 
 ## 当前模板
 
@@ -64,6 +82,11 @@ bash scripts/release_check.sh
 - [Agent 工作流](docs/agent-workflow.md)
 - [来源策略](docs/provenance-policy.md)
 - [申请证据摘要](docs/application-evidence.md)
+
+## 反馈入口
+
+- [首次使用反馈](https://github.com/Kkkakania/python-plotting-skill/issues/1)
+- [v0.2 模板请求](https://github.com/Kkkakania/python-plotting-skill/issues/2)
 
 ## 许可证
 

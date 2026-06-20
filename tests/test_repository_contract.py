@@ -48,6 +48,12 @@ def test_core_repository_files_exist_and_are_bilingual():
 
     assert "[简体中文](README.zh-CN.md)" in read("README.md")
     assert "[English](README.md)" in read("README.zh-CN.md")
+    assert "actions/workflows/quality.yml/badge.svg" in read("README.md")
+    assert "actions/workflows/quality.yml/badge.svg" in read("README.zh-CN.md")
+    assert "docs/gallery/line_trend.png" in read("README.md")
+    assert "docs/gallery/line_trend.png" in read("README.zh-CN.md")
+    assert "python-plotting-skill/issues/1" in read("README.md")
+    assert "python-plotting-skill/issues/2" in read("README.zh-CN.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
