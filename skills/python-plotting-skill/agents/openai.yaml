@@ -1,0 +1,4 @@
+interface:
+  display_name: "Python plotting skill"
+  short_description: "Choose and render clean Matplotlib scientific figures"
+  default_prompt: "Use Python to choose a suitable scientific plot, generate a runnable Matplotlib script, export PNG/SVG, and explain the figure's limits."
