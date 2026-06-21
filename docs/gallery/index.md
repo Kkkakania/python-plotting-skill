@@ -16,3 +16,4 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `violin_plot` | Compare distribution shapes. | Kernel smoothing can imply unsupported detail. | ![Violin plot](violin_plot.png) |
 | `small_multiples` | Repeat comparable panels. | Panels need shared scales to compare fairly. | ![Small multiples](small_multiples.png) |
 | `correlation_matrix` | Summarize pairwise correlations. | Correlation signs need domain interpretation. | ![Correlation matrix](correlation_matrix.png) |
+| `lollipop_ranking` | Rank ordered items without heavy bars. | Rankings need uncertainty or sample-size context when values are close. | ![Lollipop ranking](lollipop_ranking.png) |

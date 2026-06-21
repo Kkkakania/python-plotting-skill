@@ -210,6 +210,26 @@ def plot_correlation_matrix() -> plt.Figure:
     return finish(fig)
 
 
+def plot_lollipop_ranking() -> plt.Figure:
+    labels = np.array(["alpha", "beta", "gamma", "delta", "epsilon", "zeta"])
+    values = np.array([73, 61, 88, 54, 79, 67], dtype=float)
+    order = np.argsort(values)
+    labels = labels[order]
+    values = values[order]
+    y = np.arange(len(labels))
+
+    fig, ax = plt.subplots(figsize=(6.0, 3.9))
+    ax.hlines(y, 0, values, color="#b7c4d4", linewidth=2.2)
+    ax.scatter(values, y, s=70, color="#2455a4", edgecolor="white", linewidth=0.8, zorder=3)
+    for yi, value in zip(y, values, strict=True):
+        ax.text(value + 1.4, yi, f"{value:.0f}", va="center", fontsize=8, color="#324052")
+    ax.set_yticks(y, labels)
+    ax.set_xlim(0, max(values) + 12)
+    ax.set_xlabel("Score")
+    apply_style(ax, "Lollipop ranking")
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -223,6 +243,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "violin_plot", "title": "Violin plot", "task": "Compare distribution shapes.", "risk": "Kernel smoothing can imply unsupported detail.", "plot": plot_violin_plot},
     {"id": "small_multiples", "title": "Small multiples", "task": "Repeat comparable panels.", "risk": "Panels need shared scales to compare fairly.", "plot": plot_small_multiples},
     {"id": "correlation_matrix", "title": "Correlation matrix", "task": "Summarize pairwise correlations.", "risk": "Correlation signs need domain interpretation.", "plot": plot_correlation_matrix},
+    {"id": "lollipop_ranking", "title": "Lollipop ranking", "task": "Rank ordered items without heavy bars.", "risk": "Rankings need uncertainty or sample-size context when values are close.", "plot": plot_lollipop_ranking},
 ]
 
 

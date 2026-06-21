@@ -133,8 +133,9 @@ def test_template_catalog_has_v0_1_scope():
         "violin_plot",
         "small_multiples",
         "correlation_matrix",
+        "lollipop_ranking",
     }
-    assert len(ids) >= 12
+    assert len(ids) >= 13
     assert required.issubset(ids)
     assert len(ids) == len(set(ids))
     for template in templates:
@@ -160,6 +161,12 @@ def test_gallery_renderer_generates_png_and_svg(tmp_path):
     for template_id in ids:
         assert (tmp_path / f"{template_id}.png").stat().st_size > 1024
         assert (tmp_path / f"{template_id}.svg").stat().st_size > 1024
+
+
+def test_lollipop_ranking_is_documented():
+    assert "`lollipop_ranking`" in read("README.md")
+    assert "`lollipop_ranking`" in read("README.zh-CN.md")
+    assert "`lollipop_ranking`" in read("docs/chart-selection.md")
 
 
 def test_release_check_and_scans_pass():
