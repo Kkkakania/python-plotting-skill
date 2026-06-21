@@ -23,6 +23,15 @@ def load_renderer():
     return module
 
 
+def load_repository_checker():
+    path = ROOT / "scripts" / "check_repository.py"
+    spec = importlib.util.spec_from_file_location("check_repository", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def test_core_repository_files_exist_and_are_bilingual():
     required = [
         "README.md",
@@ -64,6 +73,24 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "synthetic CSV" in triage
     assert "Matplotlib" in triage
     assert "not a claim about adoption" in triage
+
+
+def test_application_evidence_is_current_and_bounded():
+    text = read("docs/application-evidence.md")
+    assert "Snapshot date: 2026-06-21." in text
+    assert "Use this as companion evidence" in text
+    assert "not the main Codex for Open Source application repository" in text
+    assert "Quality workflow" in text
+    assert "first-use" in text
+    assert "Do not claim broad adoption" in text
+    assert "guaranteed" in text
+
+
+def test_repository_scan_skips_generated_python_artifacts():
+    checker = load_repository_checker()
+    assert checker.should_skip(ROOT / ".pytest_cache" / "README.md")
+    assert checker.should_skip(ROOT / "scripts" / "__pycache__" / "render_gallery.pyc")
+    assert checker.should_skip(ROOT / "python_plotting_skill.egg-info" / "PKG-INFO")
 
 
 def test_skill_frontmatter_and_workflow_are_specific():

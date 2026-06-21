@@ -1,9 +1,13 @@
 # Application Evidence
 
-Snapshot date: 2026-06-20.
+Snapshot date: 2026-06-21.
 
 This note is a short reviewer-facing summary. It is not a promise of Codex for
 Open Source eligibility, credits, or ChatGPT Pro access.
+
+Use this as companion evidence for the plotting-skill ecosystem. It is not the main Codex for Open Source application repository; that role belongs to
+`matlab-scientific-figures` because it has the main gallery, release history,
+MATLAB APIs, and broader maintainer workflow.
 
 ## Repository to cite
 
@@ -17,7 +21,7 @@ Open Source eligibility, credits, or ChatGPT Pro access.
 - `scripts/release_check.sh` runs tests, gallery rendering, privacy checks, and
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
-  GitHub Actions quality workflow.
+  GitHub Actions Quality workflow.
 - New issues receive a small maintainer triage checklist, so first-use reports
   and template requests can be classified without exposing private data.
 - First-use feedback is tracked in
@@ -34,6 +38,6 @@ Open Source eligibility, credits, or ChatGPT Pro access.
 - keep English and Chinese docs aligned without turning the Chinese README into
   a direct translation.
 
-Do not claim broad adoption, download volume, external endorsement, or guaranteed
-benefit-program results. Cite only public commits, workflow runs, checked
-examples, and redacted issues.
+Do not claim broad adoption, download volume, external endorsement, or
+guaranteed benefit-program results. Cite only public commits, workflow runs,
+checked examples, and redacted issues.

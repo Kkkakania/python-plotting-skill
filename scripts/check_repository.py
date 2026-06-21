@@ -6,7 +6,16 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP_DIRS = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", "docs/gallery"}
+SKIP_DIRS = {
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".pytest_cache",
+    "dist",
+    "build",
+    "docs/gallery",
+}
 TEXT_SUFFIXES = {".md", ".py", ".yml", ".yaml", ".toml", ".txt", ".sh"}
 
 LOCAL_ROOTS = [
@@ -24,7 +33,10 @@ SENSITIVE_WORDS = [
 
 
 def should_skip(path: Path) -> bool:
-    rel = path.relative_to(ROOT).as_posix()
+    rel_path = path.relative_to(ROOT)
+    rel = rel_path.as_posix()
+    if any(part == "__pycache__" or part.endswith(".egg-info") for part in rel_path.parts):
+        return True
     return any(rel == part or rel.startswith(part + "/") for part in SKIP_DIRS)
 
 
