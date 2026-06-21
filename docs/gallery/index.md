@@ -15,6 +15,7 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `box_jitter` | Compare distributions and observations. | Small samples need visible points. | ![Box plot with jitter](box_jitter.png) |
 | `violin_plot` | Compare distribution shapes. | Kernel smoothing can imply unsupported detail. | ![Violin plot](violin_plot.png) |
 | `small_multiples` | Repeat comparable panels. | Panels need shared scales to compare fairly. | ![Small multiples](small_multiples.png) |
+| `category_small_multiples` | Compare the same categories across several panels. | Panel comparisons need the same category order and y-axis scale. | ![Category small multiples](category_small_multiples.png) |
 | `correlation_matrix` | Summarize pairwise correlations. | Correlation signs need domain interpretation. | ![Correlation matrix](correlation_matrix.png) |
 | `lollipop_ranking` | Rank ordered items without heavy bars. | Rankings need uncertainty or sample-size context when values are close. | ![Lollipop ranking](lollipop_ranking.png) |
 | `paired_before_after` | Show paired change between two conditions. | The paired design must be real; do not connect unrelated groups. | ![Paired before/after](paired_before_after.png) |

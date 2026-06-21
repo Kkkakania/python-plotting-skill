@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `category_small_multiples` for comparing the same category set across
+  several panels with a shared y-axis scale.
 - Added `paired_before_after` for paired two-condition change plots with
   synthetic gallery output and chart-selection guidance.
 - Added `lollipop_ranking` as a lightweight sorted comparison template with

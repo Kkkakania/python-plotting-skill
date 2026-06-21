@@ -55,6 +55,7 @@ bash scripts/release_check.sh
 | `box_jitter` | 分布和单个观测值 |
 | `violin_plot` | 分组分布形状 |
 | `small_multiples` | 同一尺度下的多面板对比 |
+| `category_small_multiples` | 多个面板中比较同一组类别 |
 | `correlation_matrix` | 相关性概览 |
 | `lollipop_ranking` | 更轻量的排序对比 |
 | `paired_before_after` | 两个条件下的配对变化 |

@@ -63,6 +63,7 @@ meant to show chart structure, not real research results.
 | `box_jitter` | distribution plus observations |
 | `violin_plot` | distribution shape by group |
 | `small_multiples` | repeated panels on one scale |
+| `category_small_multiples` | same categories compared across panels |
 | `correlation_matrix` | compact correlation overview |
 | `lollipop_ranking` | sorted item ranking without heavy bars |
 | `paired_before_after` | paired change between two conditions |

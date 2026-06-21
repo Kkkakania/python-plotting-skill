@@ -185,6 +185,32 @@ def plot_small_multiples() -> plt.Figure:
     return finish(fig)
 
 
+def plot_category_small_multiples() -> plt.Figure:
+    labels = ["A", "B", "C", "D"]
+    panels = ["site 1", "site 2", "site 3", "site 4"]
+    values = np.array(
+        [
+            [4.8, 6.2, 5.4, 7.1],
+            [5.5, 5.9, 6.8, 6.4],
+            [6.1, 4.9, 5.8, 7.3],
+            [4.6, 5.2, 6.3, 6.9],
+        ]
+    )
+    colors = ["#2455a4", "#2f8f5b", "#b45f06", "#6f4e7c"]
+
+    fig, axes = plt.subplots(2, 2, figsize=(6.8, 4.6), sharey=True)
+    x = np.arange(len(labels))
+    for ax, panel, row in zip(axes.ravel(), panels, values, strict=True):
+        ax.bar(x, row, color=colors, width=0.68)
+        ax.set_xticks(x, labels)
+        ax.set_ylim(0, 8)
+        apply_style(ax, panel)
+    axes[0, 0].set_ylabel("Score")
+    axes[1, 0].set_ylabel("Score")
+    fig.suptitle("Category small multiples", x=0.04, ha="left", fontsize=11, fontweight="bold")
+    return finish(fig)
+
+
 def plot_correlation_matrix() -> plt.Figure:
     base = RNG.normal(0, 1, (160, 5))
     data = np.column_stack(
@@ -258,6 +284,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "box_jitter", "title": "Box plot with jitter", "task": "Compare distributions and observations.", "risk": "Small samples need visible points.", "plot": plot_box_jitter},
     {"id": "violin_plot", "title": "Violin plot", "task": "Compare distribution shapes.", "risk": "Kernel smoothing can imply unsupported detail.", "plot": plot_violin_plot},
     {"id": "small_multiples", "title": "Small multiples", "task": "Repeat comparable panels.", "risk": "Panels need shared scales to compare fairly.", "plot": plot_small_multiples},
+    {"id": "category_small_multiples", "title": "Category small multiples", "task": "Compare the same categories across several panels.", "risk": "Panel comparisons need the same category order and y-axis scale.", "plot": plot_category_small_multiples},
     {"id": "correlation_matrix", "title": "Correlation matrix", "task": "Summarize pairwise correlations.", "risk": "Correlation signs need domain interpretation.", "plot": plot_correlation_matrix},
     {"id": "lollipop_ranking", "title": "Lollipop ranking", "task": "Rank ordered items without heavy bars.", "risk": "Rankings need uncertainty or sample-size context when values are close.", "plot": plot_lollipop_ranking},
     {"id": "paired_before_after", "title": "Paired before/after", "task": "Show paired change between two conditions.", "risk": "The paired design must be real; do not connect unrelated groups.", "plot": plot_paired_before_after},
