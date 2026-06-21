@@ -29,6 +29,26 @@ MATLAB APIs, and broader maintainer workflow.
   small v0.2 template requests are tracked in
   [`python-plotting-skill#2`](https://github.com/Kkkakania/python-plotting-skill/issues/2).
 
+## Checked snapshot
+
+| Field | Value |
+|---|---|
+| Latest checked commit | `fed6be9` |
+| Latest checked workflow | Quality run `27891227531`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27891227531> |
+| Local release gate | `PYTHON=/tmp/python-plotting-skill-check/bin/python bash scripts/release_check.sh` |
+
+Latest local release-gate result:
+
+```text
+7 passed
+Gallery check passed for 12 templates.
+Repository check passed.
+Release check passed.
+```
+
+This snapshot is maintenance evidence for the Python skill. It is not evidence of external adoption, usage volume, or reviewer approval.
+
 ## What Codex would help with
 
 - review new templates for chart/data mismatch;
