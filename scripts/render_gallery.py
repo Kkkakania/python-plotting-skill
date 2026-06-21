@@ -230,6 +230,22 @@ def plot_lollipop_ranking() -> plt.Figure:
     return finish(fig)
 
 
+def plot_paired_before_after() -> plt.Figure:
+    before = np.array([62, 58, 71, 66, 54, 73, 69, 61, 57, 76, 64, 68], dtype=float)
+    after = before + np.array([5, 7, 3, 8, 6, 4, 9, 5, 7, 2, 6, 8], dtype=float)
+
+    fig, ax = plt.subplots(figsize=(5.8, 4.0))
+    for old, new in zip(before, after, strict=True):
+        color = "#2f8f5b" if new >= old else "#bb3e03"
+        ax.plot([0, 1], [old, new], color="#9fb1c5", linewidth=1.3, zorder=1)
+        ax.scatter([0, 1], [old, new], s=38, color=color, edgecolor="white", linewidth=0.7, zorder=2)
+    ax.set_xticks([0, 1], ["before", "after"])
+    ax.set_xlim(-0.18, 1.18)
+    ax.set_ylabel("Score")
+    apply_style(ax, "Paired before/after")
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -244,6 +260,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "small_multiples", "title": "Small multiples", "task": "Repeat comparable panels.", "risk": "Panels need shared scales to compare fairly.", "plot": plot_small_multiples},
     {"id": "correlation_matrix", "title": "Correlation matrix", "task": "Summarize pairwise correlations.", "risk": "Correlation signs need domain interpretation.", "plot": plot_correlation_matrix},
     {"id": "lollipop_ranking", "title": "Lollipop ranking", "task": "Rank ordered items without heavy bars.", "risk": "Rankings need uncertainty or sample-size context when values are close.", "plot": plot_lollipop_ranking},
+    {"id": "paired_before_after", "title": "Paired before/after", "task": "Show paired change between two conditions.", "risk": "The paired design must be real; do not connect unrelated groups.", "plot": plot_paired_before_after},
 ]
 
 

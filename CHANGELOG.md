@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `paired_before_after` for paired two-condition change plots with
+  synthetic gallery output and chart-selection guidance.
 - Added `lollipop_ranking` as a lightweight sorted comparison template with
   synthetic gallery output and README/chart-selection coverage.
 - Initial v0.1 repository scaffold with 12 Matplotlib templates, gallery

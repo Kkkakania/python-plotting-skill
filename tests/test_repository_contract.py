@@ -134,8 +134,9 @@ def test_template_catalog_has_v0_1_scope():
         "small_multiples",
         "correlation_matrix",
         "lollipop_ranking",
+        "paired_before_after",
     }
-    assert len(ids) >= 13
+    assert len(ids) >= 14
     assert required.issubset(ids)
     assert len(ids) == len(set(ids))
     for template in templates:
@@ -167,6 +168,12 @@ def test_lollipop_ranking_is_documented():
     assert "`lollipop_ranking`" in read("README.md")
     assert "`lollipop_ranking`" in read("README.zh-CN.md")
     assert "`lollipop_ranking`" in read("docs/chart-selection.md")
+
+
+def test_paired_before_after_is_documented():
+    assert "`paired_before_after`" in read("README.md")
+    assert "`paired_before_after`" in read("README.zh-CN.md")
+    assert "`paired_before_after`" in read("docs/chart-selection.md")
 
 
 def test_release_check_and_scans_pass():
