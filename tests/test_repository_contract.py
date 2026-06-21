@@ -86,12 +86,12 @@ def test_application_evidence_is_current_and_bounded():
     assert "Use this as companion evidence" in text
     assert "not the main Codex for Open Source application repository" in text
     assert "Quality workflow" in text
-    assert "Latest checked commit | `fed6be9`" in text
-    assert "Quality run `27891227531`, successful and annotation-free" in text
-    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27891227531" in text
+    assert "Latest checked commit | `bd061bb`" in text
+    assert "Quality run `27905926400`, successful and annotation-free" in text
+    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27905926400" in text
     assert "PYTHON=/tmp/python-plotting-skill-check/bin/python bash scripts/release_check.sh" in text
-    assert "7 passed" in text
-    assert "Gallery check passed for 12 templates." in text
+    assert "9 passed" in text
+    assert "Gallery check passed for 14 templates." in text
     assert "Repository check passed." in text
     assert "first-use" in text
     assert "Do not claim broad adoption" in text

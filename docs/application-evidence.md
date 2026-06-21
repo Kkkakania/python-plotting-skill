@@ -16,7 +16,7 @@ MATLAB APIs, and broader maintainer workflow.
 ## Current evidence
 
 - `skills/python-plotting-skill/SKILL.md` defines the agent workflow.
-- `scripts/render_gallery.py` generates 12 deterministic Matplotlib examples.
+- `scripts/render_gallery.py` generates 14 deterministic Matplotlib examples.
 - `docs/gallery` stores checked PNG/SVG outputs.
 - `scripts/release_check.sh` runs tests, gallery rendering, privacy checks, and
   source-boundary checks.
@@ -33,16 +33,16 @@ MATLAB APIs, and broader maintainer workflow.
 
 | Field | Value |
 |---|---|
-| Latest checked commit | `fed6be9` |
-| Latest checked workflow | Quality run `27891227531`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27891227531> |
+| Latest checked commit | `bd061bb` |
+| Latest checked workflow | Quality run `27905926400`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27905926400> |
 | Local release gate | `PYTHON=/tmp/python-plotting-skill-check/bin/python bash scripts/release_check.sh` |
 
 Latest local release-gate result:
 
 ```text
-7 passed
-Gallery check passed for 12 templates.
+9 passed
+Gallery check passed for 14 templates.
 Repository check passed.
 Release check passed.
 ```
