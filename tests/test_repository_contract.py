@@ -73,6 +73,11 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "synthetic CSV" in triage
     assert "Matplotlib" in triage
     assert "not a claim about adoption" in triage
+    quality = read(".github/workflows/quality.yml")
+    assert "actions/checkout@v5" in quality
+    assert "actions/setup-python@v6" in quality
+    assert "actions/checkout@v4" not in quality
+    assert "actions/setup-python@v5" not in quality
 
 
 def test_application_evidence_is_current_and_bounded():
