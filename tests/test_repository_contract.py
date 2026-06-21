@@ -38,6 +38,7 @@ def test_core_repository_files_exist_and_are_bilingual():
         "docs/application-evidence.md",
         "skills/python-plotting-skill/SKILL.md",
         ".github/workflows/quality.yml",
+        ".github/workflows/issue-triage.yml",
         ".github/ISSUE_TEMPLATE/first-use-feedback.yml",
         ".github/ISSUE_TEMPLATE/template-request.yml",
     ]
@@ -58,6 +59,11 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "不要声称" in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
     assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
+    triage = read(".github/workflows/issue-triage.yml")
+    assert "python-plotting-skill-triage" in triage
+    assert "synthetic CSV" in triage
+    assert "Matplotlib" in triage
+    assert "not a claim about adoption" in triage
 
 
 def test_skill_frontmatter_and_workflow_are_specific():

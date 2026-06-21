@@ -18,6 +18,8 @@ Open Source eligibility, credits, or ChatGPT Pro access.
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
   GitHub Actions quality workflow.
+- New issues receive a small maintainer triage checklist, so first-use reports
+  and template requests can be classified without exposing private data.
 - First-use feedback is tracked in
   [`python-plotting-skill#1`](https://github.com/Kkkakania/python-plotting-skill/issues/1);
   small v0.2 template requests are tracked in
