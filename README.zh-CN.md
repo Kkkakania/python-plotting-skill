@@ -13,7 +13,7 @@
 - [`scientific-diagram-skill`](https://github.com/Kkkakania/matlab-plotting-skill/tree/main/skills/scientific-diagram-skill)：Mermaid 和 draw.io 科研图示。
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)：MATLAB gallery 和 API 证据面。
 
-当前 main 分支保持小而清楚：14 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
+当前 main 分支保持小而清楚：15 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
 
 ## 快速开始
 

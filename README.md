@@ -17,7 +17,7 @@ It is the Python sibling of the MATLAB plotting and scientific diagram skills:
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)
   remains the MATLAB gallery and API evidence surface.
 
-This repository starts deliberately small. The current main branch contains 14 Matplotlib templates,
+This repository starts deliberately small. The current main branch contains 15 Matplotlib templates,
 synthetic data, a gallery renderer, provenance notes, and a quality gate. It
 does not claim broad adoption, downloads, or external endorsement.
 
