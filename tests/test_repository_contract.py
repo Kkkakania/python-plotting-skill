@@ -90,9 +90,9 @@ def test_application_evidence_is_current_and_bounded():
     assert "Use this as companion evidence" in text
     assert "not the main Codex for Open Source application repository" in text
     assert "Quality workflow" in text
-    assert "Latest checked commit | `4f0622f`" in text
-    assert "Quality run `27924202891`, successful and annotation-free" in text
-    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924202891" in text
+    assert "Latest checked commit | `61e3352`" in text
+    assert "Quality run `27924928257`, successful and annotation-free" in text
+    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924928257" in text
     assert "PYTHON=.venv/bin/python bash scripts/release_check.sh" in text
     assert "10 passed" in text
     assert "Gallery check passed for 15 templates." in text
@@ -101,8 +101,11 @@ def test_application_evidence_is_current_and_bounded():
     assert "Do not claim broad adoption" in text
     assert "not evidence of external adoption" in text
     assert "guaranteed" in text
+    assert "README template-count guard" in text
     assert "221bf12" not in text
     assert "27906611032" not in text
+    assert "4f0622f" not in text
+    assert "27924202891" not in text
 
 
 def test_repository_scan_skips_generated_python_artifacts():

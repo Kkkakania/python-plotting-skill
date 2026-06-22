@@ -22,6 +22,8 @@ MATLAB APIs, and broader maintainer workflow.
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
   GitHub Actions Quality workflow.
+- The repository scan now includes a README template-count guard, so the public
+  template count fails CI if it drifts from `scripts/render_gallery.py`.
 - New issues receive a small maintainer triage checklist, so first-use reports
   and template requests can be classified without exposing private data.
 - First-use feedback is tracked in
@@ -33,9 +35,9 @@ MATLAB APIs, and broader maintainer workflow.
 
 | Field | Value |
 |---|---|
-| Latest checked commit | `4f0622f` |
-| Latest checked workflow | Quality run `27924202891`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924202891> |
+| Latest checked commit | `61e3352` |
+| Latest checked workflow | Quality run `27924928257`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924928257> |
 | Local release gate | `PYTHON=.venv/bin/python bash scripts/release_check.sh` |
 
 Latest local release-gate result:
