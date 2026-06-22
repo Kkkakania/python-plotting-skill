@@ -1,6 +1,6 @@
 # Application Evidence
 
-Snapshot date: 2026-06-21.
+Snapshot date: 2026-06-22.
 
 This note is a short reviewer-facing summary. It is not a promise of Codex for
 Open Source eligibility, credits, or ChatGPT Pro access.
@@ -33,10 +33,10 @@ MATLAB APIs, and broader maintainer workflow.
 
 | Field | Value |
 |---|---|
-| Latest checked commit | `221bf12` |
-| Latest checked workflow | Quality run `27906611032`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27906611032> |
-| Local release gate | `PYTHON=/tmp/python-plotting-skill-check/bin/python bash scripts/release_check.sh` |
+| Latest checked commit | `4f0622f` |
+| Latest checked workflow | Quality run `27924202891`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924202891> |
+| Local release gate | `PYTHON=.venv/bin/python bash scripts/release_check.sh` |
 
 Latest local release-gate result:
 

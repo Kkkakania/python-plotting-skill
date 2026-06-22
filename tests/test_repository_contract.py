@@ -86,14 +86,14 @@ def test_core_repository_files_exist_and_are_bilingual():
 
 def test_application_evidence_is_current_and_bounded():
     text = read("docs/application-evidence.md")
-    assert "Snapshot date: 2026-06-21." in text
+    assert "Snapshot date: 2026-06-22." in text
     assert "Use this as companion evidence" in text
     assert "not the main Codex for Open Source application repository" in text
     assert "Quality workflow" in text
-    assert "Latest checked commit | `221bf12`" in text
-    assert "Quality run `27906611032`, successful and annotation-free" in text
-    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27906611032" in text
-    assert "PYTHON=/tmp/python-plotting-skill-check/bin/python bash scripts/release_check.sh" in text
+    assert "Latest checked commit | `4f0622f`" in text
+    assert "Quality run `27924202891`, successful and annotation-free" in text
+    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924202891" in text
+    assert "PYTHON=.venv/bin/python bash scripts/release_check.sh" in text
     assert "10 passed" in text
     assert "Gallery check passed for 15 templates." in text
     assert "Repository check passed." in text
@@ -101,6 +101,8 @@ def test_application_evidence_is_current_and_bounded():
     assert "Do not claim broad adoption" in text
     assert "not evidence of external adoption" in text
     assert "guaranteed" in text
+    assert "221bf12" not in text
+    assert "27906611032" not in text
 
 
 def test_repository_scan_skips_generated_python_artifacts():
