@@ -118,6 +118,14 @@ def test_repository_scan_skips_generated_python_artifacts():
     assert checker.should_skip(ROOT / "python_plotting_skill.egg-info" / "PKG-INFO")
 
 
+def test_generated_python_artifacts_are_not_tracked():
+    output = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True)
+    blocked = (".venv/", ".pytest_cache/", "__pycache__/", ".pyc", ".egg-info/")
+    tracked = [path for path in output.splitlines() if any(part in path for part in blocked)]
+
+    assert tracked == []
+
+
 def test_repository_scan_validates_readme_template_count_claims():
     checker = load_repository_checker()
     renderer = load_renderer()
