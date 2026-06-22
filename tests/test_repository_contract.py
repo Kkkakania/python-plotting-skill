@@ -112,6 +112,31 @@ def test_repository_scan_skips_generated_python_artifacts():
     assert checker.should_skip(ROOT / "python_plotting_skill.egg-info" / "PKG-INFO")
 
 
+def test_repository_scan_validates_readme_template_count_claims():
+    checker = load_repository_checker()
+    renderer = load_renderer()
+    count = len(renderer.TEMPLATES)
+
+    errors: list[str] = []
+    checker.check_readme_template_count_claims(
+        read("README.md"),
+        read("README.zh-CN.md"),
+        count,
+        errors,
+    )
+    assert errors == []
+
+    stale_errors: list[str] = []
+    checker.check_readme_template_count_claims(
+        "This repository contains 14 Matplotlib templates.",
+        "当前 main 分支保持小而清楚：14 个 Matplotlib 模板。",
+        count,
+        stale_errors,
+    )
+    assert "README.md: stale template count claim" in stale_errors
+    assert "README.zh-CN.md: stale template count claim" in stale_errors
+
+
 def test_skill_frontmatter_and_workflow_are_specific():
     text = read("skills/python-plotting-skill/SKILL.md")
     assert "name: python-plotting-skill" in text

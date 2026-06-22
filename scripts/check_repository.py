@@ -50,6 +50,34 @@ def iter_text_files():
             yield path
 
 
+def check_readme_template_count_claims(
+    readme_text: str,
+    readme_zh_text: str,
+    template_count: int,
+    errors: list[str],
+) -> None:
+    english_counts = re.findall(r"contains (\d+) Matplotlib templates", readme_text)
+    chinese_counts = re.findall(r"(\d+) 个 Matplotlib 模板", readme_zh_text)
+    expected = str(template_count)
+
+    if not english_counts or expected not in english_counts:
+        errors.append("README.md: stale template count claim")
+    if not chinese_counts or expected not in chinese_counts:
+        errors.append("README.zh-CN.md: stale template count claim")
+
+
+def load_template_count() -> int:
+    import importlib.util
+
+    renderer_path = ROOT / "scripts" / "render_gallery.py"
+    spec = importlib.util.spec_from_file_location("render_gallery", renderer_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Could not load render_gallery.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return len(module.TEMPLATES)
+
+
 def main() -> int:
     email = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
     errors: list[str] = []
@@ -67,6 +95,12 @@ def main() -> int:
         placeholder = "TO" + "DO"
         if placeholder in text:
             errors.append(f"{rel}: placeholder marker")
+    check_readme_template_count_claims(
+        (ROOT / "README.md").read_text(encoding="utf-8"),
+        (ROOT / "README.zh-CN.md").read_text(encoding="utf-8"),
+        load_template_count(),
+        errors,
+    )
     if errors:
         for error in errors:
             print(error)
