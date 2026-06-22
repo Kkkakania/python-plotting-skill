@@ -35,15 +35,15 @@ MATLAB APIs, and broader maintainer workflow.
 
 | Field | Value |
 |---|---|
-| Latest checked commit | `61e3352` |
-| Latest checked workflow | Quality run `27924928257`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27924928257> |
+| Checked baseline commit | `fc9b1f4` |
+| Checked baseline workflow | Quality run `27925041264`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27925041264> |
 | Local release gate | `PYTHON=.venv/bin/python bash scripts/release_check.sh` |
 
 Latest local release-gate result:
 
 ```text
-10 passed
+11 passed
 Gallery check passed for 15 templates.
 Repository check passed.
 Release check passed.
