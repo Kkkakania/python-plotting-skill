@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import os
 import pathlib
+import re
 import subprocess
 import sys
 
@@ -64,6 +65,8 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "docs/gallery/line_trend.png" in read("README.zh-CN.md")
     assert "python-plotting-skill/issues/1" in read("README.md")
     assert "python-plotting-skill/issues/2" in read("README.zh-CN.md")
+    assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.md")
+    assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
     assert "contains 15 Matplotlib templates" in read("README.md")
@@ -189,6 +192,15 @@ def test_template_catalog_has_v0_1_scope():
         assert template["title"]
         assert template["task"]
         assert template["risk"]
+
+
+def test_skill_template_map_matches_renderer_catalog():
+    renderer = load_renderer()
+    expected = {template["id"] for template in renderer.TEMPLATES}
+    skill_text = read("skills/python-plotting-skill/SKILL.md")
+    mapped = set(re.findall(r"^- `([^`]+)`:", skill_text, flags=re.MULTILINE))
+
+    assert mapped == expected
 
 
 def test_gallery_renderer_generates_png_and_svg(tmp_path):

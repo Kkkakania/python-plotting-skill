@@ -12,7 +12,7 @@ It is the Python sibling of the MATLAB plotting and scientific diagram skills:
 
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
   covers MATLAB data-to-figure workflows.
-- [`scientific-diagram-skill`](https://github.com/Kkkakania/matlab-plotting-skill/tree/main/skills/scientific-diagram-skill)
+- [`scientific-diagram-skill`](https://github.com/Kkkakania/scientific-diagram-skill)
   covers Mermaid and draw.io research diagrams.
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)
   remains the MATLAB gallery and API evidence surface.
