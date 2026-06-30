@@ -17,7 +17,7 @@ It is the Python sibling of the MATLAB plotting and scientific diagram skills:
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)
   remains the MATLAB gallery and API evidence surface.
 
-This repository starts deliberately small. The current main branch contains 15 Matplotlib templates,
+This repository starts deliberately small. The current main branch contains 16 Matplotlib templates,
 synthetic data, a gallery renderer, provenance notes, and a quality gate. It
 does not claim broad adoption, downloads, or external endorsement.
 
@@ -67,6 +67,7 @@ meant to show chart structure, not real research results.
 | `correlation_matrix` | compact correlation overview |
 | `lollipop_ranking` | sorted item ranking without heavy bars |
 | `paired_before_after` | paired change between two conditions |
+| `spectral_density` | frequency content of a sampled signal |
 
 ## Skill install
 

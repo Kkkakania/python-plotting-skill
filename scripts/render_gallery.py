@@ -272,6 +272,32 @@ def plot_paired_before_after() -> plt.Figure:
     return finish(fig)
 
 
+def plot_spectral_density() -> plt.Figure:
+    sample_rate = 200.0
+    duration = 4.0
+    time = np.arange(0, duration, 1 / sample_rate)
+    signal = (
+        0.9 * np.sin(2 * math.pi * 18 * time)
+        + 0.45 * np.sin(2 * math.pi * 42 * time)
+        + RNG.normal(0, 0.18, len(time))
+    )
+    window = np.hanning(len(signal))
+    spectrum = np.fft.rfft((signal - signal.mean()) * window)
+    frequency = np.fft.rfftfreq(len(signal), d=1 / sample_rate)
+    power = (np.abs(spectrum) ** 2) / (sample_rate * np.sum(window**2))
+    power_db = 10 * np.log10(np.maximum(power, 1e-10))
+
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    ax.plot(frequency, power_db, color="#2455a4", linewidth=1.7)
+    ax.fill_between(frequency, power_db.min() - 3, power_db, color="#9ecae1", alpha=0.35, linewidth=0)
+    ax.set_xlim(0, 80)
+    ax.set_ylim(power_db.min() - 3, power_db.max() + 3)
+    ax.set_xlabel("Frequency (Hz)")
+    ax.set_ylabel("Power density (dB)")
+    apply_style(ax, "Spectral density")
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -288,6 +314,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "correlation_matrix", "title": "Correlation matrix", "task": "Summarize pairwise correlations.", "risk": "Correlation signs need domain interpretation.", "plot": plot_correlation_matrix},
     {"id": "lollipop_ranking", "title": "Lollipop ranking", "task": "Rank ordered items without heavy bars.", "risk": "Rankings need uncertainty or sample-size context when values are close.", "plot": plot_lollipop_ranking},
     {"id": "paired_before_after", "title": "Paired before/after", "task": "Show paired change between two conditions.", "risk": "The paired design must be real; do not connect unrelated groups.", "plot": plot_paired_before_after},
+    {"id": "spectral_density", "title": "Spectral density", "task": "Show frequency content in a sampled signal.", "risk": "Sampling rate, windowing, and units must be stated.", "plot": plot_spectral_density},
 ]
 
 

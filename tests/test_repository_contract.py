@@ -68,13 +68,15 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "python-plotting-skill/issues/1" in read("README.md")
     assert "python-plotting-skill/issues/2" in read("README.zh-CN.md")
     assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.md")
+    assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.zh-CN.md")
     assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.md")
+    assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.zh-CN.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
-    assert "contains 15 Matplotlib templates" in read("README.md")
-    assert "14 Matplotlib templates" not in read("README.md")
-    assert "15 个 Matplotlib 模板" in read("README.zh-CN.md")
-    assert "14 个 Matplotlib 模板" not in read("README.zh-CN.md")
+    assert "contains 16 Matplotlib templates" in read("README.md")
+    assert "15 Matplotlib templates" not in read("README.md")
+    assert "16 个 Matplotlib 模板" in read("README.zh-CN.md")
+    assert "15 个 Matplotlib 模板" not in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
     assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
     triage = read(".github/workflows/issue-triage.yml")
@@ -186,8 +188,9 @@ def test_template_catalog_has_v0_1_scope():
         "lollipop_ranking",
         "paired_before_after",
         "category_small_multiples",
+        "spectral_density",
     }
-    assert len(ids) >= 15
+    assert len(ids) >= 16
     assert required.issubset(ids)
     assert len(ids) == len(set(ids))
     for template in templates:
@@ -240,6 +243,12 @@ def test_category_small_multiples_is_documented():
     assert "`category_small_multiples`" in read("README.md")
     assert "`category_small_multiples`" in read("README.zh-CN.md")
     assert "`category_small_multiples`" in read("docs/chart-selection.md")
+
+
+def test_spectral_density_is_documented():
+    assert "`spectral_density`" in read("README.md")
+    assert "`spectral_density`" in read("README.zh-CN.md")
+    assert "`spectral_density`" in read("docs/chart-selection.md")
 
 
 def test_v02_template_candidates_are_bounded():

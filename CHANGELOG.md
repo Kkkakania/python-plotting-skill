@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `spectral_density` for frequency-content plots with deterministic
+  synthetic signal data and chart-selection guidance.
 - Added `category_small_multiples` for comparing the same category set across
   several panels with a shared y-axis scale.
 - Added `paired_before_after` for paired two-condition change plots with
