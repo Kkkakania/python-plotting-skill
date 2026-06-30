@@ -10,10 +10,10 @@
 它和另外两个仓库配合使用：
 
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：MATLAB 数据到图形流程。
-- [`scientific-diagram-skill`](https://github.com/Kkkakania/matlab-plotting-skill/tree/main/skills/scientific-diagram-skill)：Mermaid 和 draw.io 科研图示。
+- [`scientific-diagram-skill`](https://github.com/Kkkakania/scientific-diagram-skill)：Mermaid 和 draw.io 科研图示。
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)：MATLAB gallery 和 API 证据面。
 
-当前 main 分支保持小而清楚：15 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
+当前 main 分支保持小而清楚：16 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
 
 ## 快速开始
 
@@ -59,6 +59,7 @@ bash scripts/release_check.sh
 | `correlation_matrix` | 相关性概览 |
 | `lollipop_ranking` | 更轻量的排序对比 |
 | `paired_before_after` | 两个条件下的配对变化 |
+| `spectral_density` | 采样信号的频率成分 |
 
 ## 安装 Skill
 
@@ -85,6 +86,7 @@ bash scripts/release_check.sh
 - [Agent 工作流](docs/agent-workflow.md)
 - [来源策略](docs/provenance-policy.md)
 - [申请证据摘要](docs/application-evidence.md)
+- [v0.2 模板候选](docs/v0.2-template-candidates.md)
 
 ## 反馈入口
 

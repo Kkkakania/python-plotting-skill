@@ -19,3 +19,4 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `correlation_matrix` | Summarize pairwise correlations. | Correlation signs need domain interpretation. | ![Correlation matrix](correlation_matrix.png) |
 | `lollipop_ranking` | Rank ordered items without heavy bars. | Rankings need uncertainty or sample-size context when values are close. | ![Lollipop ranking](lollipop_ranking.png) |
 | `paired_before_after` | Show paired change between two conditions. | The paired design must be real; do not connect unrelated groups. | ![Paired before/after](paired_before_after.png) |
+| `spectral_density` | Show frequency content in a sampled signal. | Sampling rate, windowing, and units must be stated. | ![Spectral density](spectral_density.png) |

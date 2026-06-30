@@ -38,6 +38,7 @@ reproducible plot rather than an interactive dashboard.
 - `correlation_matrix`: pairwise correlations.
 - `lollipop_ranking`: sorted item rankings.
 - `paired_before_after`: paired changes between two conditions.
+- `spectral_density`: frequency content for sampled signals.
 
 ## Boundaries
 
