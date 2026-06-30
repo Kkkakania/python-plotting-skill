@@ -34,7 +34,10 @@ reproducible plot rather than an interactive dashboard.
 - `box_jitter`: distribution plus observations.
 - `violin_plot`: distribution shape by group.
 - `small_multiples`: repeated panels.
+- `category_small_multiples`: repeated category panels.
 - `correlation_matrix`: pairwise correlations.
+- `lollipop_ranking`: sorted item rankings.
+- `paired_before_after`: paired changes between two conditions.
 
 ## Boundaries
 
