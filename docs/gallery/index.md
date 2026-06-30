@@ -23,3 +23,4 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `residual_convergence` | Show iterative residual decay. | Log scales can hide plateaus or stopping-rule problems. | ![Residual convergence](residual_convergence.png) |
 | `main_inset` | Show a main trend with a magnified local region. | Insets can overemphasize small local features. | ![Main plot with inset](main_inset.png) |
 | `shared_colorbar_panels` | Compare several heatmaps on one color scale. | A shared scale can hide subtle within-panel variation. | ![Shared colorbar panels](shared_colorbar_panels.png) |
+| `gantt_timeline` | Show tasks on a simple calendar timeline. | Timelines can imply false precision when dates are tentative. | ![Gantt timeline](gantt_timeline.png) |

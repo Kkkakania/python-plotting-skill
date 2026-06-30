@@ -23,6 +23,7 @@ Start with the communication task, not the prettiest chart.
 | Show iterative residual decay | `residual_convergence` |
 | Magnify one local region inside a main trend | `main_inset` |
 | Compare several heatmaps on one color scale | `shared_colorbar_panels` |
+| Show tasks on a simple calendar timeline | `gantt_timeline` |
 
 The template is a starting point. Before presenting a figure, check whether the
 data supports the claim the figure appears to make. A fitted trend line does not
@@ -36,4 +37,5 @@ convergence plots should state the stopping rule and whether the residual is
 absolute, relative, normalized, or scaled. Inset plots should explain why the
 local region matters, otherwise the zoom can overstate a small feature. Shared
 colorbars make cross-panel comparison fair only when every panel uses the same
-units and range.
+units and range. Timeline bars should distinguish committed dates from rough
+planning windows.
