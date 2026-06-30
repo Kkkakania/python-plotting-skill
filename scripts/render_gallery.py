@@ -298,6 +298,24 @@ def plot_spectral_density() -> plt.Figure:
     return finish(fig)
 
 
+def plot_residual_convergence() -> plt.Figure:
+    iteration = np.arange(1, 61)
+    baseline = 1.2 * np.exp(-iteration / 13.0) + 2.8e-3
+    accelerated = 1.0 * np.exp(-iteration / 8.0) + 7.5e-4
+    damped = 0.85 * np.exp(-iteration / 5.5) + 1.6e-4
+
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    ax.semilogy(iteration, baseline, color="#2455a4", linewidth=1.9, label="baseline")
+    ax.semilogy(iteration, accelerated, color="#2f8f5b", linewidth=1.9, label="accelerated")
+    ax.semilogy(iteration, damped, color="#b45f06", linewidth=1.9, label="damped")
+    ax.axhline(1e-3, color="#8b1e3f", linewidth=1.0, linestyle="--", label="target")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("Relative residual")
+    ax.legend(frameon=False, fontsize=8, ncols=4)
+    apply_style(ax, "Residual convergence")
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -315,6 +333,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "lollipop_ranking", "title": "Lollipop ranking", "task": "Rank ordered items without heavy bars.", "risk": "Rankings need uncertainty or sample-size context when values are close.", "plot": plot_lollipop_ranking},
     {"id": "paired_before_after", "title": "Paired before/after", "task": "Show paired change between two conditions.", "risk": "The paired design must be real; do not connect unrelated groups.", "plot": plot_paired_before_after},
     {"id": "spectral_density", "title": "Spectral density", "task": "Show frequency content in a sampled signal.", "risk": "Sampling rate, windowing, and units must be stated.", "plot": plot_spectral_density},
+    {"id": "residual_convergence", "title": "Residual convergence", "task": "Show iterative residual decay.", "risk": "Log scales can hide plateaus or stopping-rule problems.", "plot": plot_residual_convergence},
 ]
 
 

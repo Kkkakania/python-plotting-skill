@@ -73,10 +73,10 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.zh-CN.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
-    assert "contains 16 Matplotlib templates" in read("README.md")
-    assert "15 Matplotlib templates" not in read("README.md")
-    assert "16 个 Matplotlib 模板" in read("README.zh-CN.md")
-    assert "15 个 Matplotlib 模板" not in read("README.zh-CN.md")
+    assert "contains 17 Matplotlib templates" in read("README.md")
+    assert "16 Matplotlib templates" not in read("README.md")
+    assert "17 个 Matplotlib 模板" in read("README.zh-CN.md")
+    assert "16 个 Matplotlib 模板" not in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
     assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
     triage = read(".github/workflows/issue-triage.yml")
@@ -189,8 +189,9 @@ def test_template_catalog_has_v0_1_scope():
         "paired_before_after",
         "category_small_multiples",
         "spectral_density",
+        "residual_convergence",
     }
-    assert len(ids) >= 16
+    assert len(ids) >= 17
     assert required.issubset(ids)
     assert len(ids) == len(set(ids))
     for template in templates:
@@ -249,6 +250,12 @@ def test_spectral_density_is_documented():
     assert "`spectral_density`" in read("README.md")
     assert "`spectral_density`" in read("README.zh-CN.md")
     assert "`spectral_density`" in read("docs/chart-selection.md")
+
+
+def test_residual_convergence_is_documented():
+    assert "`residual_convergence`" in read("README.md")
+    assert "`residual_convergence`" in read("README.zh-CN.md")
+    assert "`residual_convergence`" in read("docs/chart-selection.md")
 
 
 def test_v02_template_candidates_are_bounded():

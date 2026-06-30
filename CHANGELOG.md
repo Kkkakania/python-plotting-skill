@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `residual_convergence` for semilog iterative residual plots with
+  deterministic synthetic solver traces and stopping-rule guidance.
 - Added `spectral_density` for frequency-content plots with deterministic
   synthetic signal data and chart-selection guidance.
 - Added `category_small_multiples` for comparing the same category set across
