@@ -107,7 +107,7 @@ a runnable script, export clean figures, and mention limitations.
 ## Feedback
 
 - [First-use feedback](https://github.com/Kkkakania/python-plotting-skill/issues/1)
-- [v0.2 template requests](https://github.com/Kkkakania/python-plotting-skill/issues/2)
+- [Template requests](https://github.com/Kkkakania/python-plotting-skill/issues/new?template=template-request.yml)
 
 ## License
 
