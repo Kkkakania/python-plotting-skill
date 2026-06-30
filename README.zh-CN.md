@@ -13,7 +13,7 @@
 - [`scientific-diagram-skill`](https://github.com/Kkkakania/scientific-diagram-skill)：Mermaid 和 draw.io 科研图示。
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)：MATLAB gallery 和 API 证据面。
 
-当前 main 分支保持小而清楚：18 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
+当前 main 分支保持小而清楚：19 个 Matplotlib 模板、合成数据、gallery 渲染脚本、来源说明和质量检查。不要声称它已经有用户规模、下载量或外部背书。
 
 ## 快速开始
 
@@ -62,6 +62,7 @@ bash scripts/release_check.sh
 | `spectral_density` | 采样信号的频率成分 |
 | `residual_convergence` | 迭代求解器或仿真残差衰减 |
 | `main_inset` | 主趋势和局部放大区域 |
+| `shared_colorbar_panels` | 共用色标的多个热力图 |
 
 ## 安装 Skill
 

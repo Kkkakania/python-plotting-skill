@@ -22,6 +22,7 @@ Start with the communication task, not the prettiest chart.
 | Show frequency content for a sampled signal | `spectral_density` |
 | Show iterative residual decay | `residual_convergence` |
 | Magnify one local region inside a main trend | `main_inset` |
+| Compare several heatmaps on one color scale | `shared_colorbar_panels` |
 
 The template is a starting point. Before presenting a figure, check whether the
 data supports the claim the figure appears to make. A fitted trend line does not
@@ -33,4 +34,6 @@ category order and y-axis scale. Spectral density plots need the sampling rate,
 frequency units, and any windowing choices stated beside the figure. Residual
 convergence plots should state the stopping rule and whether the residual is
 absolute, relative, normalized, or scaled. Inset plots should explain why the
-local region matters, otherwise the zoom can overstate a small feature.
+local region matters, otherwise the zoom can overstate a small feature. Shared
+colorbars make cross-panel comparison fair only when every panel uses the same
+units and range.

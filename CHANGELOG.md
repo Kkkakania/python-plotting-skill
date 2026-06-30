@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `shared_colorbar_panels` for comparing heatmap panels on one shared
+  color scale with deterministic synthetic matrices.
 - Added `main_inset` for a main trend with one magnified local region, using
   deterministic synthetic data and Matplotlib native inset axes.
 - Added `residual_convergence` for semilog iterative residual plots with

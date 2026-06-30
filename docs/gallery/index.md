@@ -22,3 +22,4 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `spectral_density` | Show frequency content in a sampled signal. | Sampling rate, windowing, and units must be stated. | ![Spectral density](spectral_density.png) |
 | `residual_convergence` | Show iterative residual decay. | Log scales can hide plateaus or stopping-rule problems. | ![Residual convergence](residual_convergence.png) |
 | `main_inset` | Show a main trend with a magnified local region. | Insets can overemphasize small local features. | ![Main plot with inset](main_inset.png) |
+| `shared_colorbar_panels` | Compare several heatmaps on one color scale. | A shared scale can hide subtle within-panel variation. | ![Shared colorbar panels](shared_colorbar_panels.png) |
