@@ -97,6 +97,7 @@ a runnable script, export clean figures, and mention limitations.
 - [Agent workflow](docs/agent-workflow.md)
 - [Provenance policy](docs/provenance-policy.md)
 - [Application evidence](docs/application-evidence.md)
+- [v0.2 template candidates](docs/v0.2-template-candidates.md)
 
 ## Feedback
 

@@ -46,6 +46,7 @@ def test_core_repository_files_exist_and_are_bilingual():
         "docs/agent-workflow.md",
         "docs/provenance-policy.md",
         "docs/application-evidence.md",
+        "docs/v0.2-template-candidates.md",
         "skills/python-plotting-skill/SKILL.md",
         ".github/workflows/quality.yml",
         ".github/workflows/issue-triage.yml",
@@ -63,6 +64,7 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "actions/workflows/quality.yml/badge.svg" in read("README.zh-CN.md")
     assert "docs/gallery/line_trend.png" in read("README.md")
     assert "docs/gallery/line_trend.png" in read("README.zh-CN.md")
+    assert "docs/v0.2-template-candidates.md" in read("README.md")
     assert "python-plotting-skill/issues/1" in read("README.md")
     assert "python-plotting-skill/issues/2" in read("README.zh-CN.md")
     assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.md")
@@ -238,6 +240,16 @@ def test_category_small_multiples_is_documented():
     assert "`category_small_multiples`" in read("README.md")
     assert "`category_small_multiples`" in read("README.zh-CN.md")
     assert "`category_small_multiples`" in read("docs/chart-selection.md")
+
+
+def test_v02_template_candidates_are_bounded():
+    text = read("docs/v0.2-template-candidates.md")
+    assert "python-plotting-skill#2" in text
+    assert "`spectral_density`" in text
+    assert "`residual_convergence`" in text
+    assert "`main_inset`" in text
+    assert "Full Origin-style parity" in text
+    assert "private data" in text
 
 
 def test_release_check_and_scans_pass():
