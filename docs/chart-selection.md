@@ -20,6 +20,7 @@ Start with the communication task, not the prettiest chart.
 | Rank ordered items without heavy bars | `lollipop_ranking` |
 | Show paired change between two conditions | `paired_before_after` |
 | Show frequency content for a sampled signal | `spectral_density` |
+| Show iterative residual decay | `residual_convergence` |
 
 The template is a starting point. Before presenting a figure, check whether the
 data supports the claim the figure appears to make. A fitted trend line does not
@@ -28,4 +29,6 @@ needs sample-size or uncertainty context when adjacent values are close. A
 before/after chart only makes sense when each line connects the same unit.
 Category small multiples are easier to compare when every panel keeps the same
 category order and y-axis scale. Spectral density plots need the sampling rate,
-frequency units, and any windowing choices stated beside the figure.
+frequency units, and any windowing choices stated beside the figure. Residual
+convergence plots should state the stopping rule and whether the residual is
+absolute, relative, normalized, or scaled.
