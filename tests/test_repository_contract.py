@@ -66,7 +66,10 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "docs/gallery/line_trend.png" in read("README.zh-CN.md")
     assert "docs/v0.2-template-candidates.md" in read("README.md")
     assert "python-plotting-skill/issues/1" in read("README.md")
-    assert "python-plotting-skill/issues/2" in read("README.zh-CN.md")
+    assert "issues/new?template=template-request.yml" in read("README.md")
+    assert "issues/new?template=template-request.yml" in read("README.zh-CN.md")
+    assert "python-plotting-skill/issues/2" not in read("README.md")
+    assert "python-plotting-skill/issues/2" not in read("README.zh-CN.md")
     assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.md")
     assert "github.com/Kkkakania/scientific-diagram-skill" in read("README.zh-CN.md")
     assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.md")
@@ -282,6 +285,8 @@ def test_gantt_timeline_is_documented():
 def test_v02_template_candidates_are_bounded():
     text = read("docs/v0.2-template-candidates.md")
     assert "python-plotting-skill#2" in text
+    assert "bounded v0.2 shortlist is complete" in text
+    assert "new template-request issue" in text
     assert "`spectral_density`" in text
     assert "`residual_convergence`" in text
     assert "`main_inset`" in text
