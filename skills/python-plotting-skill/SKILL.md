@@ -40,6 +40,7 @@ reproducible plot rather than an interactive dashboard.
 - `paired_before_after`: paired changes between two conditions.
 - `spectral_density`: frequency content for sampled signals.
 - `residual_convergence`: residual decay across solver or simulation iterations.
+- `main_inset`: main trend with one magnified local region.
 
 ## Boundaries
 
