@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `main_inset` for a main trend with one magnified local region, using
+  deterministic synthetic data and Matplotlib native inset axes.
 - Added `residual_convergence` for semilog iterative residual plots with
   deterministic synthetic solver traces and stopping-rule guidance.
 - Added `spectral_density` for frequency-content plots with deterministic

@@ -316,6 +316,31 @@ def plot_residual_convergence() -> plt.Figure:
     return finish(fig)
 
 
+def plot_main_inset() -> plt.Figure:
+    x = np.linspace(0, 10, 240)
+    baseline = 0.18 * x + np.sin(1.25 * x)
+    local_event = 0.8 * np.exp(-0.5 * ((x - 5.1) / 0.28) ** 2)
+    y = baseline + local_event
+
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    ax.plot(x, y, color="#2455a4", linewidth=1.9)
+    ax.set_xlabel("Distance")
+    ax.set_ylabel("Response")
+    apply_style(ax, "Main plot with inset")
+
+    inset = ax.inset_axes([0.56, 0.14, 0.36, 0.36])
+    inset.plot(x, y, color="#2455a4", linewidth=1.4)
+    inset.set_xlim(4.5, 5.7)
+    inset.set_ylim(0.85, 2.35)
+    inset.set_xticks([4.5, 5.1, 5.7])
+    inset.set_yticks([1.0, 1.6, 2.2])
+    inset.tick_params(colors="#324052", labelsize=7)
+    inset.grid(True, color="#d9dee7", linewidth=0.6, alpha=0.75)
+    inset.set_title("local detail", fontsize=8)
+    ax.indicate_inset_zoom(inset, edgecolor="#8b1e3f", linewidth=0.8)
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -334,6 +359,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "paired_before_after", "title": "Paired before/after", "task": "Show paired change between two conditions.", "risk": "The paired design must be real; do not connect unrelated groups.", "plot": plot_paired_before_after},
     {"id": "spectral_density", "title": "Spectral density", "task": "Show frequency content in a sampled signal.", "risk": "Sampling rate, windowing, and units must be stated.", "plot": plot_spectral_density},
     {"id": "residual_convergence", "title": "Residual convergence", "task": "Show iterative residual decay.", "risk": "Log scales can hide plateaus or stopping-rule problems.", "plot": plot_residual_convergence},
+    {"id": "main_inset", "title": "Main plot with inset", "task": "Show a main trend with a magnified local region.", "risk": "Insets can overemphasize small local features.", "plot": plot_main_inset},
 ]
 
 

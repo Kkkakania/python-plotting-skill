@@ -21,3 +21,4 @@ Generated from synthetic data by `scripts/render_gallery.py`.
 | `paired_before_after` | Show paired change between two conditions. | The paired design must be real; do not connect unrelated groups. | ![Paired before/after](paired_before_after.png) |
 | `spectral_density` | Show frequency content in a sampled signal. | Sampling rate, windowing, and units must be stated. | ![Spectral density](spectral_density.png) |
 | `residual_convergence` | Show iterative residual decay. | Log scales can hide plateaus or stopping-rule problems. | ![Residual convergence](residual_convergence.png) |
+| `main_inset` | Show a main trend with a magnified local region. | Insets can overemphasize small local features. | ![Main plot with inset](main_inset.png) |
