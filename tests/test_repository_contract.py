@@ -73,10 +73,10 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "matlab-plotting-skill/tree/main/skills/scientific-diagram-skill" not in read("README.zh-CN.md")
     assert "broad adoption" in read("README.md")
     assert "不要声称" in read("README.zh-CN.md")
-    assert "contains 18 Matplotlib templates" in read("README.md")
-    assert "17 Matplotlib templates" not in read("README.md")
-    assert "18 个 Matplotlib 模板" in read("README.zh-CN.md")
-    assert "17 个 Matplotlib 模板" not in read("README.zh-CN.md")
+    assert "contains 19 Matplotlib templates" in read("README.md")
+    assert "18 Matplotlib templates" not in read("README.md")
+    assert "19 个 Matplotlib 模板" in read("README.zh-CN.md")
+    assert "18 个 Matplotlib 模板" not in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
     assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
     triage = read(".github/workflows/issue-triage.yml")
@@ -191,8 +191,9 @@ def test_template_catalog_has_v0_1_scope():
         "spectral_density",
         "residual_convergence",
         "main_inset",
+        "shared_colorbar_panels",
     }
-    assert len(ids) >= 18
+    assert len(ids) >= 19
     assert required.issubset(ids)
     assert len(ids) == len(set(ids))
     for template in templates:
@@ -263,6 +264,12 @@ def test_main_inset_is_documented():
     assert "`main_inset`" in read("README.md")
     assert "`main_inset`" in read("README.zh-CN.md")
     assert "`main_inset`" in read("docs/chart-selection.md")
+
+
+def test_shared_colorbar_panels_is_documented():
+    assert "`shared_colorbar_panels`" in read("README.md")
+    assert "`shared_colorbar_panels`" in read("README.zh-CN.md")
+    assert "`shared_colorbar_panels`" in read("docs/chart-selection.md")
 
 
 def test_v02_template_candidates_are_bounded():

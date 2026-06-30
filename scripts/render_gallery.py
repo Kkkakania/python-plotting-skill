@@ -341,6 +341,35 @@ def plot_main_inset() -> plt.Figure:
     return finish(fig)
 
 
+def plot_shared_colorbar_panels() -> plt.Figure:
+    x = np.linspace(-2.2, 2.2, 36)
+    y = np.linspace(-2.2, 2.2, 30)
+    xx, yy = np.meshgrid(x, y)
+    fields = [
+        np.sin(xx) + np.cos(yy),
+        np.sin(xx + 0.55) + np.cos(yy - 0.35),
+        0.7 * np.sin(1.4 * xx) + np.cos(0.8 * yy),
+        np.sin(xx - yy / 2) + 0.35 * np.cos(xx + yy),
+    ]
+
+    fig, axes = plt.subplots(2, 2, figsize=(6.2, 4.6), sharex=True, sharey=True)
+    fig.patch.set_facecolor("white")
+    fig.subplots_adjust(left=0.08, right=0.84, bottom=0.1, top=0.86, wspace=0.16, hspace=0.32)
+    vmin = min(float(field.min()) for field in fields)
+    vmax = max(float(field.max()) for field in fields)
+    image = None
+    for idx, (ax, field) in enumerate(zip(axes.ravel(), fields, strict=True), start=1):
+        image = ax.imshow(field, cmap="viridis", vmin=vmin, vmax=vmax, origin="lower", aspect="auto")
+        ax.set_title(f"case {idx}", loc="left", fontsize=9, fontweight="bold")
+        ax.tick_params(colors="#324052", labelsize=7)
+        for spine in ("top", "right"):
+            ax.spines[spine].set_visible(False)
+    assert image is not None
+    fig.colorbar(image, ax=axes.ravel().tolist(), fraction=0.046, pad=0.04, label="shared scale")
+    fig.suptitle("Shared colorbar panels", x=0.04, ha="left", fontsize=11, fontweight="bold")
+    return fig
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -360,6 +389,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "spectral_density", "title": "Spectral density", "task": "Show frequency content in a sampled signal.", "risk": "Sampling rate, windowing, and units must be stated.", "plot": plot_spectral_density},
     {"id": "residual_convergence", "title": "Residual convergence", "task": "Show iterative residual decay.", "risk": "Log scales can hide plateaus or stopping-rule problems.", "plot": plot_residual_convergence},
     {"id": "main_inset", "title": "Main plot with inset", "task": "Show a main trend with a magnified local region.", "risk": "Insets can overemphasize small local features.", "plot": plot_main_inset},
+    {"id": "shared_colorbar_panels", "title": "Shared colorbar panels", "task": "Compare several heatmaps on one color scale.", "risk": "A shared scale can hide subtle within-panel variation.", "plot": plot_shared_colorbar_panels},
 ]
 
 
