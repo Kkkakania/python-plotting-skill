@@ -94,7 +94,7 @@ bash scripts/release_check.sh
 
 ## 反馈入口
 
-- [首次使用反馈](https://github.com/Kkkakania/python-plotting-skill/issues/1)
+- [首次使用反馈](https://github.com/Kkkakania/python-plotting-skill/issues/new?template=first-use-feedback.yml)
 - [模板请求](https://github.com/Kkkakania/python-plotting-skill/issues/new?template=template-request.yml)
 
 ## 许可证
