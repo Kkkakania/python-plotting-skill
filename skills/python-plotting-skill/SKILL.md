@@ -42,6 +42,7 @@ reproducible plot rather than an interactive dashboard.
 - `residual_convergence`: residual decay across solver or simulation iterations.
 - `main_inset`: main trend with one magnified local region.
 - `shared_colorbar_panels`: several heatmaps compared on one shared color scale.
+- `gantt_timeline`: simple task timing on a calendar axis.
 
 ## Boundaries
 

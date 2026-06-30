@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import math
 from pathlib import Path
 from typing import Callable
@@ -11,6 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import numpy as np
 
 
@@ -370,6 +372,25 @@ def plot_shared_colorbar_panels() -> plt.Figure:
     return fig
 
 
+def plot_gantt_timeline() -> plt.Figure:
+    tasks = ["scope", "data prep", "analysis", "figures", "review"]
+    starts = [dt.date(2026, 1, 5), dt.date(2026, 1, 12), dt.date(2026, 1, 19), dt.date(2026, 1, 29), dt.date(2026, 2, 5)]
+    durations = np.array([8, 9, 13, 8, 6])
+    colors = ["#2455a4", "#2f8f5b", "#b45f06", "#6f4e7c", "#8b1e3f"]
+    y = np.arange(len(tasks))
+
+    fig, ax = plt.subplots(figsize=(6.4, 3.7))
+    ax.barh(y, durations, left=mdates.date2num(starts), color=colors, height=0.56)
+    ax.set_yticks(y, tasks)
+    ax.invert_yaxis()
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %d"))
+    ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Task")
+    apply_style(ax, "Gantt timeline")
+    return finish(fig)
+
+
 TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "line_trend", "title": "Line trend", "task": "Show one trend over time.", "risk": "Can hide seasonal or subgroup patterns.", "plot": plot_line_trend},
     {"id": "multi_line_comparison", "title": "Multi-line comparison", "task": "Compare several series on one axis.", "risk": "Too many lines become unreadable.", "plot": plot_multi_line_comparison},
@@ -390,6 +411,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
     {"id": "residual_convergence", "title": "Residual convergence", "task": "Show iterative residual decay.", "risk": "Log scales can hide plateaus or stopping-rule problems.", "plot": plot_residual_convergence},
     {"id": "main_inset", "title": "Main plot with inset", "task": "Show a main trend with a magnified local region.", "risk": "Insets can overemphasize small local features.", "plot": plot_main_inset},
     {"id": "shared_colorbar_panels", "title": "Shared colorbar panels", "task": "Compare several heatmaps on one color scale.", "risk": "A shared scale can hide subtle within-panel variation.", "plot": plot_shared_colorbar_panels},
+    {"id": "gantt_timeline", "title": "Gantt timeline", "task": "Show tasks on a simple calendar timeline.", "risk": "Timelines can imply false precision when dates are tentative.", "plot": plot_gantt_timeline},
 ]
 
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `gantt_timeline` for simple task timelines with deterministic synthetic
+  project dates and Matplotlib date ticks.
 - Added `shared_colorbar_panels` for comparing heatmap panels on one shared
   color scale with deterministic synthetic matrices.
 - Added `main_inset` for a main trend with one magnified local region, using
