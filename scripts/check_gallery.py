@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 from render_gallery import TEMPLATES
@@ -25,6 +26,19 @@ def main() -> int:
     for extra in ["index.md", "provenance.md"]:
         if not (args.gallery / extra).is_file():
             errors.append(f"missing {args.gallery / extra}")
+    manifest_path = args.gallery / "manifest.json"
+    if not manifest_path.is_file():
+        errors.append(f"missing {manifest_path}")
+    else:
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.append(f"{manifest_path}: invalid JSON: {exc.msg}")
+        else:
+            if manifest.get("schemaVersion") != 1:
+                errors.append(f"{manifest_path}: unsupported schemaVersion")
+            if manifest.get("templateCount") != len(TEMPLATES):
+                errors.append(f"{manifest_path}: templateCount drift")
 
     if errors:
         for error in errors:
