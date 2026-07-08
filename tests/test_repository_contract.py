@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import os
 import pathlib
 import re
@@ -209,6 +210,17 @@ def test_template_catalog_has_v0_1_scope():
         assert template["risk"]
 
 
+def test_committed_gallery_manifest_matches_renderer_catalog():
+    renderer = load_renderer()
+    ids = {template["id"] for template in renderer.TEMPLATES}
+    manifest = json.loads(read("docs/gallery/manifest.json"))
+
+    assert manifest["schemaVersion"] == 1
+    assert manifest["generatedBy"] == "scripts/render_gallery.py"
+    assert manifest["templateCount"] == len(ids)
+    assert {template["id"] for template in manifest["templates"]} == ids
+
+
 def test_skill_template_map_matches_renderer_catalog():
     renderer = load_renderer()
     expected = {template["id"] for template in renderer.TEMPLATES}
@@ -235,6 +247,10 @@ def test_gallery_renderer_generates_png_and_svg(tmp_path):
     for template_id in ids:
         assert (tmp_path / f"{template_id}.png").stat().st_size > 1024
         assert (tmp_path / f"{template_id}.svg").stat().st_size > 1024
+    manifest = json.loads((tmp_path / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["schemaVersion"] == 1
+    assert manifest["templateCount"] == len(ids)
+    assert {item["id"] for item in manifest["templates"]} == set(ids)
 
 
 def test_lollipop_ranking_is_documented():

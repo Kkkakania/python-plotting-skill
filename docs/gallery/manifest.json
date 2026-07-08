@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/render_gallery.py",
+  "templateCount": 20,
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "templates": [
+    {
+      "id": "line_trend",
+      "title": "Line trend",
+      "task": "Show one trend over time.",
+      "risk": "Can hide seasonal or subgroup patterns.",
+      "outputs": [
+        "line_trend.png",
+        "line_trend.svg"
+      ]
+    },
+    {
+      "id": "multi_line_comparison",
+      "title": "Multi-line comparison",
+      "task": "Compare several series on one axis.",
+      "risk": "Too many lines become unreadable.",
+      "outputs": [
+        "multi_line_comparison.png",
+        "multi_line_comparison.svg"
+      ]
+    },
+    {
+      "id": "scatter_relationship",
+      "title": "Scatter relationship",
+      "task": "Show relation between two numeric variables.",
+      "risk": "Correlation does not prove causality.",
+      "outputs": [
+        "scatter_relationship.png",
+        "scatter_relationship.svg"
+      ]
+    },
+    {
+      "id": "regression_scatter",
+      "title": "Regression scatter",
+      "task": "Show x-y relation with a fitted trend.",
+      "risk": "A straight fit can hide nonlinear structure.",
+      "outputs": [
+        "regression_scatter.png",
+        "regression_scatter.svg"
+      ]
+    },
+    {
+      "id": "confidence_band",
+      "title": "Confidence band",
+      "task": "Show mean and uncertainty.",
+      "risk": "Band meaning must be defined.",
+      "outputs": [
+        "confidence_band.png",
+        "confidence_band.svg"
+      ]
+    },
+    {
+      "id": "grouped_bar",
+      "title": "Grouped bar",
+      "task": "Compare categories across groups.",
+      "risk": "Bars hide within-group variation.",
+      "outputs": [
+        "grouped_bar.png",
+        "grouped_bar.svg"
+      ]
+    },
+    {
+      "id": "heatmap_matrix",
+      "title": "Heatmap matrix",
+      "task": "Show matrix or grid values.",
+      "risk": "Color scale choices can exaggerate small changes.",
+      "outputs": [
+        "heatmap_matrix.png",
+        "heatmap_matrix.svg"
+      ]
+    },
+    {
+      "id": "density_scatter",
+      "title": "Density scatter",
+      "task": "Show dense x-y points.",
+      "risk": "Binning can create artificial clusters.",
+      "outputs": [
+        "density_scatter.png",
+        "density_scatter.svg"
+      ]
+    },
+    {
+      "id": "box_jitter",
+      "title": "Box plot with jitter",
+      "task": "Compare distributions and observations.",
+      "risk": "Small samples need visible points.",
+      "outputs": [
+        "box_jitter.png",
+        "box_jitter.svg"
+      ]
+    },
+    {
+      "id": "violin_plot",
+      "title": "Violin plot",
+      "task": "Compare distribution shapes.",
+      "risk": "Kernel smoothing can imply unsupported detail.",
+      "outputs": [
+        "violin_plot.png",
+        "violin_plot.svg"
+      ]
+    },
+    {
+      "id": "small_multiples",
+      "title": "Small multiples",
+      "task": "Repeat comparable panels.",
+      "risk": "Panels need shared scales to compare fairly.",
+      "outputs": [
+        "small_multiples.png",
+        "small_multiples.svg"
+      ]
+    },
+    {
+      "id": "category_small_multiples",
+      "title": "Category small multiples",
+      "task": "Compare the same categories across several panels.",
+      "risk": "Panel comparisons need the same category order and y-axis scale.",
+      "outputs": [
+        "category_small_multiples.png",
+        "category_small_multiples.svg"
+      ]
+    },
+    {
+      "id": "correlation_matrix",
+      "title": "Correlation matrix",
+      "task": "Summarize pairwise correlations.",
+      "risk": "Correlation signs need domain interpretation.",
+      "outputs": [
+        "correlation_matrix.png",
+        "correlation_matrix.svg"
+      ]
+    },
+    {
+      "id": "lollipop_ranking",
+      "title": "Lollipop ranking",
+      "task": "Rank ordered items without heavy bars.",
+      "risk": "Rankings need uncertainty or sample-size context when values are close.",
+      "outputs": [
+        "lollipop_ranking.png",
+        "lollipop_ranking.svg"
+      ]
+    },
+    {
+      "id": "paired_before_after",
+      "title": "Paired before/after",
+      "task": "Show paired change between two conditions.",
+      "risk": "The paired design must be real; do not connect unrelated groups.",
+      "outputs": [
+        "paired_before_after.png",
+        "paired_before_after.svg"
+      ]
+    },
+    {
+      "id": "spectral_density",
+      "title": "Spectral density",
+      "task": "Show frequency content in a sampled signal.",
+      "risk": "Sampling rate, windowing, and units must be stated.",
+      "outputs": [
+        "spectral_density.png",
+        "spectral_density.svg"
+      ]
+    },
+    {
+      "id": "residual_convergence",
+      "title": "Residual convergence",
+      "task": "Show iterative residual decay.",
+      "risk": "Log scales can hide plateaus or stopping-rule problems.",
+      "outputs": [
+        "residual_convergence.png",
+        "residual_convergence.svg"
+      ]
+    },
+    {
+      "id": "main_inset",
+      "title": "Main plot with inset",
+      "task": "Show a main trend with a magnified local region.",
+      "risk": "Insets can overemphasize small local features.",
+      "outputs": [
+        "main_inset.png",
+        "main_inset.svg"
+      ]
+    },
+    {
+      "id": "shared_colorbar_panels",
+      "title": "Shared colorbar panels",
+      "task": "Compare several heatmaps on one color scale.",
+      "risk": "A shared scale can hide subtle within-panel variation.",
+      "outputs": [
+        "shared_colorbar_panels.png",
+        "shared_colorbar_panels.svg"
+      ]
+    },
+    {
+      "id": "gantt_timeline",
+      "title": "Gantt timeline",
+      "task": "Show tasks on a simple calendar timeline.",
+      "risk": "Timelines can imply false precision when dates are tentative.",
+      "outputs": [
+        "gantt_timeline.png",
+        "gantt_timeline.svg"
+      ]
+    }
+  ]
+}

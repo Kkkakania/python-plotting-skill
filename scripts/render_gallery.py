@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
 import math
 from pathlib import Path
 from typing import Callable
@@ -425,6 +426,7 @@ def render(out_dir: Path, formats: list[str]) -> None:
             fig.savefig(target, dpi=160, metadata={"Creator": "python-plotting-skill clean-room renderer"})
         plt.close(fig)
     write_index(out_dir, formats)
+    write_manifest(out_dir, formats)
 
 
 def write_index(out_dir: Path, formats: list[str]) -> None:
@@ -452,6 +454,26 @@ def write_index(out_dir: Path, formats: list[str]) -> None:
         "- External images: none.",
     ]
     (out_dir / "provenance.md").write_text("\n".join(provenance) + "\n", encoding="utf-8")
+
+
+def write_manifest(out_dir: Path, formats: list[str]) -> None:
+    payload = {
+        "schemaVersion": 1,
+        "generatedBy": "scripts/render_gallery.py",
+        "templateCount": len(TEMPLATES),
+        "formats": formats,
+        "templates": [
+            {
+                "id": str(template["id"]),
+                "title": str(template["title"]),
+                "task": str(template["task"]),
+                "risk": str(template["risk"]),
+                "outputs": [f"{template['id']}.{fmt}" for fmt in formats],
+            }
+            for template in TEMPLATES
+        ],
+    }
+    (out_dir / "manifest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
 def parse_formats(raw: str) -> list[str]:
