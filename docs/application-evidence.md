@@ -1,6 +1,6 @@
 # Application Evidence
 
-Snapshot date: 2026-06-22.
+Snapshot date: 2026-07-09.
 
 This note is a short reviewer-facing summary. It is not a promise of Codex for
 Open Source eligibility, credits, or ChatGPT Pro access.
@@ -16,8 +16,9 @@ MATLAB APIs, and broader maintainer workflow.
 ## Current evidence
 
 - `skills/python-plotting-skill/SKILL.md` defines the agent workflow.
-- `scripts/render_gallery.py` generates 15 deterministic Matplotlib examples.
-- `docs/gallery` stores checked PNG/SVG outputs.
+- `scripts/render_gallery.py` generates 20 deterministic Matplotlib examples.
+- `docs/gallery` stores checked PNG/SVG outputs plus
+  `docs/gallery/manifest.json` for the committed gallery catalog.
 - `scripts/release_check.sh` runs tests, gallery rendering, privacy checks, and
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
@@ -35,16 +36,16 @@ MATLAB APIs, and broader maintainer workflow.
 
 | Field | Value |
 |---|---|
-| Checked baseline commit | `fc9b1f4` |
-| Checked baseline workflow | Quality run `27925041264`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27925041264> |
+| Checked baseline commit | `165b78e` |
+| Checked baseline workflow | Quality run `28958092895`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/28958092895> |
 | Local release gate | `PYTHON=.venv/bin/python bash scripts/release_check.sh` |
 
 Latest local release-gate result:
 
 ```text
-11 passed
-Gallery check passed for 15 templates.
+20 passed
+Gallery check passed for 20 templates.
 Repository check passed.
 Release check passed.
 ```
