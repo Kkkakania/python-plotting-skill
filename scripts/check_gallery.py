@@ -8,6 +8,19 @@ from pathlib import Path
 from render_gallery import TEMPLATES
 
 
+def expected_manifest_templates(formats: list[str]) -> list[dict[str, object]]:
+    return [
+        {
+            "id": str(template["id"]),
+            "title": str(template["title"]),
+            "task": str(template["task"]),
+            "risk": str(template["risk"]),
+            "outputs": [f"{template['id']}.{fmt}" for fmt in formats],
+        }
+        for template in TEMPLATES
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check generated gallery files.")
     parser.add_argument("gallery", type=Path)
@@ -37,8 +50,14 @@ def main() -> int:
         else:
             if manifest.get("schemaVersion") != 1:
                 errors.append(f"{manifest_path}: unsupported schemaVersion")
+            if manifest.get("generatedBy") != "scripts/render_gallery.py":
+                errors.append(f"{manifest_path}: unexpected generator")
             if manifest.get("templateCount") != len(TEMPLATES):
                 errors.append(f"{manifest_path}: templateCount drift")
+            if manifest.get("formats") != formats:
+                errors.append(f"{manifest_path}: format list drift")
+            if manifest.get("templates") != expected_manifest_templates(formats):
+                errors.append(f"{manifest_path}: manifest template catalog drift")
 
     if errors:
         for error in errors:

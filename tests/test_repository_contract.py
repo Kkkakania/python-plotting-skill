@@ -253,6 +253,44 @@ def test_gallery_renderer_generates_png_and_svg(tmp_path):
     assert {item["id"] for item in manifest["templates"]} == set(ids)
 
 
+def test_gallery_checker_rejects_manifest_catalog_drift(tmp_path):
+    gallery = tmp_path / "gallery"
+    render = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--out",
+            str(gallery),
+            "--formats",
+            "png,svg",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    assert render.returncode == 0, render.stderr
+
+    manifest_path = gallery / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["templates"][0]["id"] = "stale_or_wrong_template"
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    check = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "check_gallery.py"),
+            str(gallery),
+            "--formats",
+            "png,svg",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    assert check.returncode != 0
+    assert "manifest template catalog drift" in check.stdout
+
+
 def test_lollipop_ranking_is_documented():
     assert "`lollipop_ranking`" in read("README.md")
     assert "`lollipop_ranking`" in read("README.zh-CN.md")
