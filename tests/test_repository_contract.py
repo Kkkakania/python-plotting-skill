@@ -92,6 +92,7 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "Matplotlib" in triage
     assert "not a claim about adoption" in triage
     quality = read(".github/workflows/quality.yml")
+    assert "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24" in quality
     assert "actions/checkout@v5" in quality
     assert "actions/setup-python@v6" in quality
     assert "actions/checkout@v4" not in quality
