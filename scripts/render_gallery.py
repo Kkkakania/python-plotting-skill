@@ -481,10 +481,12 @@ def write_manifest(out_dir: Path, formats: list[str]) -> None:
 def parse_formats(raw: str) -> list[str]:
     allowed = {"png", "svg", "pdf"}
     formats = list(dict.fromkeys(item.strip().lower() for item in raw.split(",") if item.strip()))
+    if not formats:
+        raise ValueError("--formats must include at least one format")
     bad = sorted(set(formats) - allowed)
     if bad:
-        raise SystemExit(f"Unsupported format(s): {', '.join(bad)}")
-    return formats or ["png", "svg"]
+        raise ValueError(f"Unsupported format(s): {', '.join(bad)}")
+    return formats
 
 
 def parse_output_dir(raw: str) -> Path:
@@ -507,11 +509,12 @@ def main() -> int:
 
     try:
         out_dir = parse_output_dir(args.out)
+        formats = parse_formats(args.formats)
     except ValueError as exc:
         print(exc, file=sys.stderr)
         return 2
 
-    render(out_dir, parse_formats(args.formats))
+    render(out_dir, formats)
     print(f"Rendered {len(TEMPLATES)} templates to {args.out}")
     return 0
 
