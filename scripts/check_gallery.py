@@ -39,6 +39,11 @@ def main() -> int:
                 errors.append(f"{manifest_path}: unsupported schemaVersion")
             if manifest.get("templateCount") != len(TEMPLATES):
                 errors.append(f"{manifest_path}: templateCount drift")
+            expected_ids = [template["id"] for template in TEMPLATES]
+            templates = manifest.get("templates")
+            actual_ids = [item.get("id") for item in templates] if isinstance(templates, list) else []
+            if actual_ids != expected_ids:
+                errors.append(f"{manifest_path}: template ids drift")
 
     if errors:
         for error in errors:
