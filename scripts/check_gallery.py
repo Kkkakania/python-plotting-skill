@@ -3,9 +3,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from render_gallery import TEMPLATES
+
+
+def parse_formats(raw: str) -> list[str]:
+    formats = [item.strip() for item in raw.split(",") if item.strip()]
+    if not formats:
+        raise ValueError("--formats must include at least one format")
+    return formats
 
 
 def main() -> int:
@@ -14,7 +22,12 @@ def main() -> int:
     parser.add_argument("--formats", default="png,svg")
     args = parser.parse_args()
 
-    formats = [item.strip() for item in args.formats.split(",") if item.strip()]
+    try:
+        formats = parse_formats(args.formats)
+    except ValueError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+
     errors: list[str] = []
     for template in TEMPLATES:
         for fmt in formats:
