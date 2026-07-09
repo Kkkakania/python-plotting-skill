@@ -253,6 +253,38 @@ def test_gallery_renderer_generates_png_and_svg(tmp_path):
     assert {item["id"] for item in manifest["templates"]} == set(ids)
 
 
+def test_gallery_checker_rejects_manifest_output_drift(tmp_path):
+    render_command = [
+        sys.executable,
+        str(ROOT / "scripts" / "render_gallery.py"),
+        "--out",
+        str(tmp_path),
+        "--formats",
+        "png,svg",
+    ]
+    render_result = subprocess.run(render_command, cwd=ROOT, text=True, capture_output=True)
+    assert render_result.returncode == 0, render_result.stderr
+
+    manifest_path = tmp_path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["formats"] = ["png"]
+    manifest["templates"][0]["outputs"] = ["line_trend.png"]
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    check_command = [
+        sys.executable,
+        str(ROOT / "scripts" / "check_gallery.py"),
+        str(tmp_path),
+        "--formats",
+        "png,svg",
+    ]
+    check_result = subprocess.run(check_command, cwd=ROOT, text=True, capture_output=True)
+
+    assert check_result.returncode == 1
+    assert "manifest formats drift" in check_result.stdout
+    assert "manifest outputs drift" in check_result.stdout
+
+
 def test_lollipop_ranking_is_documented():
     assert "`lollipop_ranking`" in read("README.md")
     assert "`lollipop_ranking`" in read("README.zh-CN.md")
