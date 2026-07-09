@@ -143,9 +143,12 @@ def test_repository_scan_detects_common_local_path_variants():
     checker = load_repository_checker()
     samples = [
         "/" + "Users" + "/example/private.csv",
+        "/" + "users" + "/example/private.csv",
         "/" + "home" + "/example/private.csv",
         "/" + "mnt" + "/c/" + "Users" + "/example/private.csv",
+        "c:" + "\\" + "users" + "\\" + "example" + "\\" + "private.csv",
         "C:" + "\\" + "Users" + "\\" + "example" + "\\" + "private.csv",
+        "C:" + "\\\\" + "Users" + "\\\\" + "example" + "\\\\" + "private.csv",
         "%USER" + "PROFILE%" + "\\" + "example" + "\\" + "private.csv",
         "/" + "work" + "spaces" + "/private-repo/private.csv",
         "/" + "Vol" + "umes" + "/External/private.csv",
