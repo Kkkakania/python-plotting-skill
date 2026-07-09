@@ -32,5 +32,7 @@ body:
     attributes:
       label: Provenance
       options:
+        - label: I used synthetic data descriptions and did not include private data, local paths, emails, or tokens.
+          required: true
         - label: This request does not ask maintainers to copy a paper figure, private image, or unclear third-party template.
           required: true
