@@ -158,6 +158,16 @@ def test_repository_scan_detects_common_local_path_variants():
         assert checker.has_local_root_marker(sample), sample
 
 
+def test_repository_scan_includes_gallery_text_sidecars():
+    checker = load_repository_checker()
+    scanned = {path.relative_to(ROOT).as_posix() for path in checker.iter_text_files()}
+
+    assert not checker.should_skip(ROOT / "docs" / "gallery" / "provenance.md")
+    assert "docs/gallery/provenance.md" in scanned
+    assert "docs/gallery/index.md" in scanned
+    assert "docs/gallery/manifest.json" in scanned
+
+
 def test_generated_python_artifacts_are_not_tracked():
     output = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True)
     blocked = (".venv/", ".pytest_cache/", "__pycache__/", ".pyc", ".egg-info/")
