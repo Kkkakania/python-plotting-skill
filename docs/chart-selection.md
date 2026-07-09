@@ -2,6 +2,11 @@
 
 Start with the communication task, not the prettiest chart.
 
+If the source table contains private data, do not copy it into examples,
+issues, or documentation. First make a small synthetic sample with the same
+column roles, rough ranges, and missing-value shape, then choose the chart from
+that public-safe structure.
+
 | Task | First template |
 |---|---|
 | Show one trend over time | `line_trend` |
