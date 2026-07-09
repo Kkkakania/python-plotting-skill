@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "generatedBy": "scripts/render_gallery.py",
   "templateCount": 20,
+  "privateData": false,
   "formats": [
     "png",
     "svg"

@@ -461,6 +461,7 @@ def write_manifest(out_dir: Path, formats: list[str]) -> None:
         "schemaVersion": 1,
         "generatedBy": "scripts/render_gallery.py",
         "templateCount": len(TEMPLATES),
+        "privateData": False,
         "formats": formats,
         "templates": [
             {
