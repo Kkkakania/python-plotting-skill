@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from render_gallery import TEMPLATES, parse_formats
@@ -27,7 +28,12 @@ def main() -> int:
     parser.add_argument("--formats", default="png,svg")
     args = parser.parse_args()
 
-    formats = parse_formats(args.formats)
+    try:
+        formats = parse_formats(args.formats)
+    except SystemExit as exc:
+        print(exc, file=sys.stderr)
+        return 2
+
     errors: list[str] = []
     for template in TEMPLATES:
         for fmt in formats:
