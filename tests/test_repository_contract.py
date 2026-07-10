@@ -91,6 +91,9 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "synthetic CSV" in triage
     assert "Matplotlib" in triage
     assert "not a claim about adoption" in triage
+    assert "run_gh()" in triage
+    assert "max_attempts=3" in triage
+    assert "HTTP 5" in triage
     quality = read(".github/workflows/quality.yml")
     assert "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24" in quality
     assert "actions/checkout@v5" in quality
