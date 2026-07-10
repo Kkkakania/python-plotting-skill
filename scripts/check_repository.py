@@ -21,7 +21,13 @@ TEXT_SUFFIXES = {".md", ".py", ".yml", ".yaml", ".toml", ".txt", ".sh"}
 LOCAL_ROOTS = [
     "/" + "Users" + "/",
     "/" + "ho" + "me" + "/",
+    "/" + "mnt" + "/",
+    "C:" + "\\" + "Users" + "\\",
     "C:" + "\\\\" + "Users" + "\\\\",
+    "%USER" + "PROFILE%" + "\\",
+    "%USER" + "PROFILE%" + "/",
+    "/" + "work" + "spaces" + "/",
+    "/" + "Vol" + "umes" + "/",
 ]
 SENSITIVE_WORDS = [
     "身份" + "证",
@@ -48,6 +54,10 @@ def iter_text_files():
             continue
         if path.suffix.lower() in TEXT_SUFFIXES:
             yield path
+
+
+def has_local_root_marker(text: str) -> bool:
+    return any(root in text for root in LOCAL_ROOTS)
 
 
 def check_readme_template_count_claims(
@@ -86,9 +96,8 @@ def main() -> int:
         rel = path.relative_to(ROOT)
         if email.search(text):
             errors.append(f"{rel}: email-like private marker")
-        for root in LOCAL_ROOTS:
-            if root in text:
-                errors.append(f"{rel}: local absolute path marker")
+        if has_local_root_marker(text):
+            errors.append(f"{rel}: local absolute path marker")
         for word in SENSITIVE_WORDS:
             if word in text:
                 errors.append(f"{rel}: sensitive personal-data marker")

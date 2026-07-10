@@ -132,6 +132,22 @@ def test_repository_scan_skips_generated_python_artifacts():
     assert checker.should_skip(ROOT / "python_plotting_skill.egg-info" / "PKG-INFO")
 
 
+def test_repository_scan_detects_common_local_path_variants():
+    checker = load_repository_checker()
+    samples = [
+        "/" + "Users" + "/example/private.csv",
+        "/" + "home" + "/example/private.csv",
+        "/" + "mnt" + "/c/" + "Users" + "/example/private.csv",
+        "C:" + "\\" + "Users" + "\\" + "example" + "\\" + "private.csv",
+        "%USER" + "PROFILE%" + "\\" + "example" + "\\" + "private.csv",
+        "/" + "work" + "spaces" + "/private-repo/private.csv",
+        "/" + "Vol" + "umes" + "/External/private.csv",
+    ]
+
+    for sample in samples:
+        assert checker.has_local_root_marker(sample), sample
+
+
 def test_generated_python_artifacts_are_not_tracked():
     output = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True)
     blocked = (".venv/", ".pytest_cache/", "__pycache__/", ".pyc", ".egg-info/")
