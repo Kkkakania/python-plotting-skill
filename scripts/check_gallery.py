@@ -5,7 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
-from render_gallery import TEMPLATES
+from render_gallery import TEMPLATES, parse_formats
 
 
 def expected_manifest_templates(formats: list[str]) -> list[dict[str, object]]:
@@ -27,7 +27,7 @@ def main() -> int:
     parser.add_argument("--formats", default="png,svg")
     args = parser.parse_args()
 
-    formats = [item.strip() for item in args.formats.split(",") if item.strip()]
+    formats = parse_formats(args.formats)
     errors: list[str] = []
     for template in TEMPLATES:
         for fmt in formats:
