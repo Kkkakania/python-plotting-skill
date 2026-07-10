@@ -24,6 +24,25 @@ def test_parse_formats_deduplicates_preserving_order():
     assert renderer.parse_formats("png,png,svg") == ["png", "svg"]
 
 
+def test_render_gallery_rejects_empty_format_list(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--out",
+            str(tmp_path / "gallery"),
+            "--formats",
+            ",",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 2
+    assert "--formats must include at least one" in result.stderr
+
+
 def test_render_gallery_rejects_empty_output_dir():
     result = subprocess.run(
         [

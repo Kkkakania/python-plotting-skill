@@ -30,7 +30,7 @@ def main() -> int:
 
     try:
         formats = parse_formats(args.formats)
-    except SystemExit as exc:
+    except ValueError as exc:
         print(exc, file=sys.stderr)
         return 2
 
