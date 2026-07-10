@@ -317,6 +317,17 @@ def test_gallery_checker_rejects_manifest_catalog_drift(tmp_path):
     assert "manifest template catalog drift" in check.stdout
 
 
+def test_gallery_renderer_is_reproducible_within_one_process(tmp_path):
+    renderer = load_renderer()
+    first = tmp_path / "first"
+    second = tmp_path / "second"
+
+    renderer.render(first, ["png"])
+    renderer.render(second, ["png"])
+
+    assert (first / "line_trend.png").read_bytes() == (second / "line_trend.png").read_bytes()
+
+
 def test_lollipop_ranking_is_documented():
     assert "`lollipop_ranking`" in read("README.md")
     assert "`lollipop_ranking`" in read("README.zh-CN.md")

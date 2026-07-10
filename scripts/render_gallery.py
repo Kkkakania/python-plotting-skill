@@ -20,7 +20,13 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "docs" / "gallery"
-RNG = np.random.default_rng(20260620)
+RNG_SEED = 20260620
+RNG = np.random.default_rng(RNG_SEED)
+
+
+def reset_rng() -> None:
+    global RNG
+    RNG = np.random.default_rng(RNG_SEED)
 
 
 def apply_style(ax: plt.Axes, title: str) -> None:
@@ -418,6 +424,7 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
 
 
 def render(out_dir: Path, formats: list[str]) -> None:
+    reset_rng()
     out_dir.mkdir(parents=True, exist_ok=True)
     for template in TEMPLATES:
         fig = template["plot"]()
@@ -450,7 +457,7 @@ def write_index(out_dir: Path, formats: list[str]) -> None:
         "# Gallery Provenance",
         "",
         "- Data: deterministic synthetic arrays generated inside `scripts/render_gallery.py`.",
-        "- Seed: 20260620.",
+        f"- Seed: {RNG_SEED}.",
         "- Private data: none.",
         "- External images: none.",
     ]
