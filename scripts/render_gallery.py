@@ -478,7 +478,7 @@ def write_manifest(out_dir: Path, formats: list[str]) -> None:
 
 def parse_formats(raw: str) -> list[str]:
     allowed = {"png", "svg", "pdf"}
-    formats = [item.strip().lower() for item in raw.split(",") if item.strip()]
+    formats = list(dict.fromkeys(item.strip().lower() for item in raw.split(",") if item.strip()))
     bad = sorted(set(formats) - allowed)
     if bad:
         raise SystemExit(f"Unsupported format(s): {', '.join(bad)}")
