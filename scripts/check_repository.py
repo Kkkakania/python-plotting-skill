@@ -14,9 +14,8 @@ SKIP_DIRS = {
     ".pytest_cache",
     "dist",
     "build",
-    "docs/gallery",
 }
-TEXT_SUFFIXES = {".md", ".py", ".yml", ".yaml", ".toml", ".txt", ".sh"}
+TEXT_SUFFIXES = {".json", ".md", ".py", ".yml", ".yaml", ".toml", ".txt", ".sh"}
 
 LOCAL_ROOT_PATTERNS = [
     re.compile("/" + "users" + "/", re.IGNORECASE),
