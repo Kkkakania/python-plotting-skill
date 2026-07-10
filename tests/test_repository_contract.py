@@ -86,6 +86,9 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "19 个 Matplotlib 模板" not in read("README.zh-CN.md")
     assert "Python version" in read(".github/ISSUE_TEMPLATE/first-use-feedback.yml")
     assert "synthetic data" in read(".github/ISSUE_TEMPLATE/template-request.yml")
+    assert "I used synthetic data descriptions and did not include private data, local paths, emails, or tokens." in read(
+        ".github/ISSUE_TEMPLATE/template-request.yml"
+    )
     triage = read(".github/workflows/issue-triage.yml")
     assert "python-plotting-skill-triage" in triage
     assert "synthetic CSV" in triage
