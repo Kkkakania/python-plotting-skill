@@ -18,16 +18,14 @@ SKIP_DIRS = {
 }
 TEXT_SUFFIXES = {".md", ".py", ".yml", ".yaml", ".toml", ".txt", ".sh"}
 
-LOCAL_ROOTS = [
-    "/" + "Users" + "/",
-    "/" + "ho" + "me" + "/",
-    "/" + "mnt" + "/",
-    "C:" + "\\" + "Users" + "\\",
-    "C:" + "\\\\" + "Users" + "\\\\",
-    "%USER" + "PROFILE%" + "\\",
-    "%USER" + "PROFILE%" + "/",
-    "/" + "work" + "spaces" + "/",
-    "/" + "Vol" + "umes" + "/",
+LOCAL_ROOT_PATTERNS = [
+    re.compile("/" + "users" + "/", re.IGNORECASE),
+    re.compile("/" + "home" + "/", re.IGNORECASE),
+    re.compile("/" + "mnt" + "/", re.IGNORECASE),
+    re.compile(r"[a-z]:" + r"\\+" + "users" + r"\\+", re.IGNORECASE),
+    re.compile(r"%userprofile%[\\/]", re.IGNORECASE),
+    re.compile("/" + "work" + "spaces" + "/", re.IGNORECASE),
+    re.compile("/" + "vol" + "umes" + "/", re.IGNORECASE),
 ]
 SENSITIVE_WORDS = [
     "身份" + "证",
@@ -57,7 +55,7 @@ def iter_text_files():
 
 
 def has_local_root_marker(text: str) -> bool:
-    return any(root in text for root in LOCAL_ROOTS)
+    return any(pattern.search(text) for pattern in LOCAL_ROOT_PATTERNS)
 
 
 def check_readme_template_count_claims(
