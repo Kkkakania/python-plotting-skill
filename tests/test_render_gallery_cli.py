@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import importlib.util
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -20,3 +22,20 @@ def test_parse_formats_deduplicates_preserving_order():
     renderer = load_renderer()
 
     assert renderer.parse_formats("png,png,svg") == ["png", "svg"]
+
+
+def test_render_gallery_rejects_empty_output_dir():
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--out",
+            "",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 2
+    assert "--out must not be empty" in result.stderr

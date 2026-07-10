@@ -5,6 +5,7 @@ import argparse
 import datetime as dt
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Callable
 
@@ -486,6 +487,12 @@ def parse_formats(raw: str) -> list[str]:
     return formats or ["png", "svg"]
 
 
+def parse_output_dir(raw: str) -> Path:
+    if not raw.strip():
+        raise ValueError("--out must not be empty")
+    return Path(raw)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Render clean-room Python plotting gallery examples.")
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output directory.")
@@ -498,7 +505,13 @@ def main() -> int:
             print(f"{template['id']}: {template['task']}")
         return 0
 
-    render(Path(args.out), parse_formats(args.formats))
+    try:
+        out_dir = parse_output_dir(args.out)
+    except ValueError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+
+    render(out_dir, parse_formats(args.formats))
     print(f"Rendered {len(TEMPLATES)} templates to {args.out}")
     return 0
 
