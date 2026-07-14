@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Choose a chart type
+    url: https://github.com/Kkkakania/python-plotting-skill/blob/main/docs/chart-selection.md
+    about: Check the chart-selection guide before requesting a new template.
+  - name: Browse the gallery
+    url: https://github.com/Kkkakania/python-plotting-skill/blob/main/docs/gallery/index.md
+    about: Review the current public examples and template coverage.
+  - name: Read the provenance policy
+    url: https://github.com/Kkkakania/python-plotting-skill/blob/main/docs/provenance-policy.md
+    about: Confirm that proposed data, figures, and snippets are safe to publish.
