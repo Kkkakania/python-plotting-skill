@@ -51,6 +51,8 @@ def test_core_repository_files_exist_and_are_bilingual():
         "skills/python-plotting-skill/SKILL.md",
         ".github/workflows/quality.yml",
         ".github/workflows/issue-triage.yml",
+        ".github/pull_request_template.md",
+        ".github/ISSUE_TEMPLATE/config.yml",
         ".github/ISSUE_TEMPLATE/first-use-feedback.yml",
         ".github/ISSUE_TEMPLATE/template-request.yml",
     ]
@@ -89,6 +91,14 @@ def test_core_repository_files_exist_and_are_bilingual():
     assert "I used synthetic data descriptions and did not include private data, local paths, emails, or tokens." in read(
         ".github/ISSUE_TEMPLATE/template-request.yml"
     )
+    pull_request_template = read(".github/pull_request_template.md")
+    assert "bash scripts/release_check.sh" in pull_request_template
+    assert "Generated gallery outputs were inspected" in pull_request_template
+    assert "private data, local paths, copied paper figures" in pull_request_template
+    issue_config = read(".github/ISSUE_TEMPLATE/config.yml")
+    assert "docs/chart-selection.md" in issue_config
+    assert "docs/gallery/index.md" in issue_config
+    assert "docs/provenance-policy.md" in issue_config
     triage = read(".github/workflows/issue-triage.yml")
     assert "python-plotting-skill-triage" in triage
     assert "synthetic CSV" in triage
