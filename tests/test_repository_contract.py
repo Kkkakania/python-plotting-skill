@@ -117,22 +117,28 @@ def test_core_repository_files_exist_and_are_bilingual():
 
 def test_application_evidence_is_current_and_bounded():
     text = read("docs/application-evidence.md")
-    assert "Snapshot date: 2026-06-22." in text
+    assert "Snapshot date: 2026-07-15." in text
     assert "Use this as companion evidence" in text
-    assert "not the main Codex for Open Source application repository" in text
+    assert "main Claude for Open Source application repository" in text
     assert "Quality workflow" in text
-    assert "Checked baseline commit | `fc9b1f4`" in text
-    assert "Quality run `27925041264`, successful and annotation-free" in text
-    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/27925041264" in text
-    assert "PYTHON=.venv/bin/python bash scripts/release_check.sh" in text
-    assert "11 passed" in text
-    assert "Gallery check passed for 15 templates." in text
+    assert "Checked baseline commit | `3ea5c1d`" in text
+    assert "Quality run `29386474126`, successful and annotation-free" in text
+    assert "https://github.com/Kkkakania/python-plotting-skill/actions/runs/29386474126" in text
+    assert "releases/tag/v0.1.0" in text
+    assert 'env PATH="$PWD/.venv/bin:$PATH" bash scripts/release_check.sh' in text
+    assert "31 passed" in text
+    assert "Gallery check passed for 20 templates." in text
     assert "Repository check passed." in text
     assert "first-use" in text
     assert "Do not claim broad adoption" in text
     assert "not evidence of external adoption" in text
     assert "guaranteed" in text
     assert "README template-count guard" in text
+    assert "11 passed" not in text
+    assert "15 templates" not in text
+    assert "2026-06-22" not in text
+    assert "fc9b1f4" not in text
+    assert "27925041264" not in text
     assert "221bf12" not in text
     assert "27906611032" not in text
     assert "4f0622f" not in text
