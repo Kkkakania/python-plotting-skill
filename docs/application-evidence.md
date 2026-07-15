@@ -1,11 +1,12 @@
 # Application Evidence
 
-Snapshot date: 2026-06-22.
+Snapshot date: 2026-07-15.
 
-This note is a short reviewer-facing summary. It is not a promise of Codex for
-Open Source eligibility, credits, or ChatGPT Pro access.
+This note is a short reviewer-facing summary. It is not a promise of Claude for
+Open Source eligibility, approval, or subscription access.
 
-Use this as companion evidence for the plotting-skill ecosystem. It is not the main Codex for Open Source application repository; that role belongs to
+Use this as companion evidence for the plotting-skill ecosystem. It is not the
+main Claude for Open Source application repository; that role belongs to
 `matlab-scientific-figures` because it has the main gallery, release history,
 MATLAB APIs, and broader maintainer workflow.
 
@@ -16,40 +17,44 @@ MATLAB APIs, and broader maintainer workflow.
 ## Current evidence
 
 - `skills/python-plotting-skill/SKILL.md` defines the agent workflow.
-- `scripts/render_gallery.py` generates 15 deterministic Matplotlib examples.
+- `scripts/render_gallery.py` generates 20 deterministic Matplotlib examples.
 - `docs/gallery` stores checked PNG/SVG outputs.
 - `scripts/release_check.sh` runs tests, gallery rendering, privacy checks, and
   source-boundary checks.
 - The repository has English and Chinese README files, provenance docs, and a
   GitHub Actions Quality workflow.
+- Release [`v0.1.0`](https://github.com/Kkkakania/python-plotting-skill/releases/tag/v0.1.0)
+  was published on 2026-07-10 from checked commit `d345b0c`.
 - The repository scan now includes a README template-count guard, so the public
   template count fails CI if it drifts from `scripts/render_gallery.py`.
 - New issues receive a small maintainer triage checklist, so first-use reports
   and template requests can be classified without exposing private data.
-- First-use feedback is tracked in
-  [`python-plotting-skill#1`](https://github.com/Kkkakania/python-plotting-skill/issues/1);
-  small v0.2 template requests are tracked in
-  [`python-plotting-skill#2`](https://github.com/Kkkakania/python-plotting-skill/issues/2).
+- The pull-request template asks contributors to run the release gate, inspect
+  generated outputs, and confirm clean-room provenance.
+- First-use feedback and template requests use structured issue forms; the issue
+  chooser links directly to chart-selection, gallery, and provenance guidance.
 
 ## Checked snapshot
 
 | Field | Value |
 |---|---|
-| Checked baseline commit | `fc9b1f4` |
-| Checked baseline workflow | Quality run `27925041264`, successful and annotation-free |
-| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/27925041264> |
-| Local release gate | `PYTHON=.venv/bin/python bash scripts/release_check.sh` |
+| Checked baseline commit | `3ea5c1d` |
+| Checked baseline workflow | Quality run `29386474126`, successful and annotation-free |
+| Workflow URL | <https://github.com/Kkkakania/python-plotting-skill/actions/runs/29386474126> |
+| Public release | [`v0.1.0`](https://github.com/Kkkakania/python-plotting-skill/releases/tag/v0.1.0) |
+| Local release gate | `env PATH="$PWD/.venv/bin:$PATH" bash scripts/release_check.sh` |
 
 Latest local release-gate result:
 
 ```text
-11 passed
-Gallery check passed for 15 templates.
+31 passed
+Gallery check passed for 20 templates.
 Repository check passed.
 Release check passed.
 ```
 
-This snapshot is maintenance evidence for the Python skill. It is not evidence of external adoption, usage volume, or reviewer approval.
+This snapshot is maintenance evidence for the Python skill.
+It is not evidence of external adoption, usage volume, or reviewer approval.
 
 ## What Codex would help with
 
