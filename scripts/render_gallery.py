@@ -485,6 +485,22 @@ def write_manifest(out_dir: Path, formats: list[str]) -> None:
     (out_dir / "manifest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def catalog_payload() -> dict[str, object]:
+    return {
+        "schemaVersion": 1,
+        "templateCount": len(TEMPLATES),
+        "templates": [
+            {
+                "id": str(template["id"]),
+                "title": str(template["title"]),
+                "task": str(template["task"]),
+                "risk": str(template["risk"]),
+            }
+            for template in TEMPLATES
+        ],
+    }
+
+
 def parse_formats(raw: str) -> list[str]:
     allowed = {"png", "svg", "pdf"}
     formats = list(dict.fromkeys(item.strip().lower() for item in raw.split(",") if item.strip()))
@@ -507,9 +523,16 @@ def main() -> int:
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output directory.")
     parser.add_argument("--formats", default="png,svg", help="Comma-separated formats: png,svg,pdf.")
     parser.add_argument("--list", action="store_true", help="List template ids and exit.")
+    parser.add_argument("--json", action="store_true", help="Emit --list output as machine-readable JSON.")
     args = parser.parse_args()
 
+    if args.json and not args.list:
+        parser.error("--json requires --list")
+
     if args.list:
+        if args.json:
+            print(json.dumps(catalog_payload(), indent=2))
+            return 0
         for template in TEMPLATES:
             print(f"{template['id']}: {template['task']}")
         return 0
