@@ -5,7 +5,7 @@
 [![Quality](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml/badge.svg)](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-`python-plotting-skill` is a small Codex skill for choosing and generating
+`python-plotting-skill` is a reusable workflow for choosing and generating
 Python scientific figures from clean, reproducible scripts.
 
 It is the Python sibling of the MATLAB plotting and scientific diagram skills:
@@ -75,8 +75,11 @@ meant to show chart structure, not real research results.
 
 ## Skill install
 
-Copy or symlink `skills/python-plotting-skill` into your Codex skills directory.
-Then ask for tasks like:
+Copy or symlink `skills/python-plotting-skill` into the skills directory used by
+your runtime. Project-local, Codex, Claude Code, and generic agent-directory
+examples are documented in [Install targets](docs/install-targets.md).
+
+Then request tasks like:
 
 ```text
 Use Python to choose a clean figure for this table.
@@ -84,8 +87,8 @@ Generate a Matplotlib confidence-band plot from this data shape.
 Create a small-multiples figure and explain when it might mislead.
 ```
 
-The skill tells Codex to inspect the data shape first, choose a chart, generate
-a runnable script, export clean figures, and mention limitations.
+The skill tells the runtime to inspect the data shape first, choose a chart,
+generate a runnable script, export clean figures, and mention limitations.
 
 ## Current limits
 
@@ -101,7 +104,7 @@ a runnable script, export clean figures, and mention limitations.
 - [Chart selection](docs/chart-selection.md)
 - [Agent workflow](docs/agent-workflow.md)
 - [Provenance policy](docs/provenance-policy.md)
-- [Application evidence](docs/application-evidence.md)
+- [Install targets](docs/install-targets.md)
 - [v0.2 template candidates](docs/v0.2-template-candidates.md)
 
 ## Feedback
