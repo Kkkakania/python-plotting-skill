@@ -29,6 +29,13 @@ python scripts/render_gallery.py --out docs/gallery --formats png,svg
 bash scripts/release_check.sh
 ```
 
+Inspect the template catalog without rendering figures:
+
+```bash
+python scripts/render_gallery.py --list
+python scripts/render_gallery.py --list --json
+```
+
 The renderer writes deterministic PNG and SVG outputs. It does not read private
 data by default.
 

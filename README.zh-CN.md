@@ -23,6 +23,13 @@ python scripts/render_gallery.py --out docs/gallery --formats png,svg
 bash scripts/release_check.sh
 ```
 
+不渲染图片，直接查看模板目录：
+
+```bash
+python scripts/render_gallery.py --list
+python scripts/render_gallery.py --list --json
+```
+
 默认 gallery 使用固定随机种子的合成数据，不读取你的私有数据。
 
 ## Gallery 预览
