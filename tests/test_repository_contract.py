@@ -119,12 +119,13 @@ def test_core_repository_files_exist_and_are_bilingual():
 
 def test_install_targets_are_runtime_neutral():
     text = read("docs/install-targets.md")
+    normalized = " ".join(text.split())
     assert "# Install Targets" in text
     assert ".codex/skills/python-plotting-skill" in text
     assert ".claude/skills/python-plotting-skill" in text
     assert ".agents/skills/python-plotting-skill" in text
     assert "project-local" in text
-    assert "does not edit runtime configuration" in text
+    assert "does not edit runtime configuration" in normalized
 
     metadata = read("pyproject.toml")
     assert 'description = "Reusable Python scientific plotting workflows."' in metadata
