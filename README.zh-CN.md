@@ -5,7 +5,7 @@
 [![Quality](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml/badge.svg)](https://github.com/Kkkakania/python-plotting-skill/actions/workflows/quality.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-`python-plotting-skill` 是一个面向 Codex 的 Python 科研绘图 Skill。它的目标很具体：让 Agent 先判断数据形状和表达目的，再选择合适的 Matplotlib 图形方案，最后生成可运行、可复查的绘图脚本。
+`python-plotting-skill` 是一个可复用的 Python 科研绘图工作流。它的目标很具体：先判断数据形状和表达目的，再选择合适的 Matplotlib 图形方案，最后生成可运行、可复查的绘图脚本。
 
 它和另外两个仓库配合使用：
 
@@ -67,7 +67,7 @@ bash scripts/release_check.sh
 
 ## 安装 Skill
 
-把 `skills/python-plotting-skill` 复制或软链接到 Codex 的 skills 目录，然后可以让 Agent 执行类似任务：
+把 `skills/python-plotting-skill` 复制或软链接到所用运行时的 skills 目录。项目本地目录、Codex、Claude Code 和通用 agent 目录示例见 [安装位置](docs/install-targets.md)。然后可以执行类似任务：
 
 ```text
 用 Python 给这个表选一种合适的科研图。
@@ -89,7 +89,7 @@ bash scripts/release_check.sh
 - [图形选择](docs/chart-selection.md)
 - [Agent 工作流](docs/agent-workflow.md)
 - [来源策略](docs/provenance-policy.md)
-- [申请证据摘要](docs/application-evidence.md)
+- [安装位置](docs/install-targets.md)
 - [v0.2 模板候选](docs/v0.2-template-candidates.md)
 
 ## 反馈入口

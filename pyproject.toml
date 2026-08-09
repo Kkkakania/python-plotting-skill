@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "python-plotting-skill"
 version = "0.1.0"
-description = "A Codex skill for clean Python scientific plotting workflows."
+description = "Reusable Python scientific plotting workflows."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
