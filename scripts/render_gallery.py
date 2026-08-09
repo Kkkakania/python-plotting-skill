@@ -423,21 +423,26 @@ TEMPLATES: list[dict[str, str | Callable[[], plt.Figure]]] = [
 ]
 
 
-def render(out_dir: Path, formats: list[str]) -> None:
+def render(
+    out_dir: Path,
+    formats: list[str],
+    templates: list[dict[str, object]] | None = None,
+) -> None:
+    templates = list(TEMPLATES) if templates is None else templates
     reset_rng()
     out_dir.mkdir(parents=True, exist_ok=True)
-    for template in TEMPLATES:
+    for template in templates:
         fig = template["plot"]()
         assert isinstance(fig, plt.Figure)
         for fmt in formats:
             target = out_dir / f"{template['id']}.{fmt}"
             fig.savefig(target, dpi=160, metadata={"Creator": "python-plotting-skill clean-room renderer"})
         plt.close(fig)
-    write_index(out_dir, formats)
-    write_manifest(out_dir, formats)
+    write_index(out_dir, formats, templates)
+    write_manifest(out_dir, formats, templates)
 
 
-def write_index(out_dir: Path, formats: list[str]) -> None:
+def write_index(out_dir: Path, formats: list[str], templates: list[dict[str, object]]) -> None:
     lines = [
         "# Gallery",
         "",
@@ -447,7 +452,7 @@ def write_index(out_dir: Path, formats: list[str]) -> None:
         "|---|---|---|---|",
     ]
     preview_ext = "png" if "png" in formats else formats[0]
-    for template in TEMPLATES:
+    for template in templates:
         lines.append(
             f"| `{template['id']}` | {template['task']} | {template['risk']} | ![{template['title']}]({template['id']}.{preview_ext}) |"
         )
@@ -464,11 +469,11 @@ def write_index(out_dir: Path, formats: list[str]) -> None:
     (out_dir / "provenance.md").write_text("\n".join(provenance) + "\n", encoding="utf-8")
 
 
-def write_manifest(out_dir: Path, formats: list[str]) -> None:
+def write_manifest(out_dir: Path, formats: list[str], templates: list[dict[str, object]]) -> None:
     payload = {
         "schemaVersion": 1,
         "generatedBy": "scripts/render_gallery.py",
-        "templateCount": len(TEMPLATES),
+        "templateCount": len(templates),
         "privateData": False,
         "formats": formats,
         "templates": [
@@ -479,7 +484,7 @@ def write_manifest(out_dir: Path, formats: list[str]) -> None:
                 "risk": str(template["risk"]),
                 "outputs": [f"{template['id']}.{fmt}" for fmt in formats],
             }
-            for template in TEMPLATES
+            for template in templates
         ],
     }
     (out_dir / "manifest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -518,12 +523,26 @@ def parse_output_dir(raw: str) -> Path:
     return Path(raw)
 
 
+def select_templates(raw: str | None) -> list[dict[str, object]]:
+    if raw is None:
+        return list(TEMPLATES)
+    requested = list(dict.fromkeys(item.strip() for item in raw.split(",") if item.strip()))
+    if not requested:
+        raise ValueError("--templates must include at least one template id")
+    by_id = {str(template["id"]): template for template in TEMPLATES}
+    unknown = [template_id for template_id in requested if template_id not in by_id]
+    if unknown:
+        raise ValueError(f"Unknown template(s): {', '.join(unknown)}")
+    return [by_id[template_id] for template_id in requested]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Render clean-room Python plotting gallery examples.")
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output directory.")
     parser.add_argument("--formats", default="png,svg", help="Comma-separated formats: png,svg,pdf.")
     parser.add_argument("--list", action="store_true", help="List template ids and exit.")
     parser.add_argument("--json", action="store_true", help="Emit --list output as machine-readable JSON.")
+    parser.add_argument("--templates", help="Comma-separated template ids to render.")
     args = parser.parse_args()
 
     if args.json and not args.list:
@@ -540,12 +559,13 @@ def main() -> int:
     try:
         out_dir = parse_output_dir(args.out)
         formats = parse_formats(args.formats)
+        templates = select_templates(args.templates)
     except ValueError as exc:
         print(exc, file=sys.stderr)
         return 2
 
-    render(out_dir, formats)
-    print(f"Rendered {len(TEMPLATES)} templates to {args.out}")
+    render(out_dir, formats, templates)
+    print(f"Rendered {len(templates)} templates to {args.out}")
     return 0
 
 

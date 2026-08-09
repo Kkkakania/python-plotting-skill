@@ -30,6 +30,12 @@ python scripts/render_gallery.py --list
 python scripts/render_gallery.py --list --json
 ```
 
+按模板 ID 只渲染本次需要的子集：
+
+```bash
+python scripts/render_gallery.py --templates line_trend,heatmap_matrix --formats png
+```
+
 默认 gallery 使用固定随机种子的合成数据，不读取你的私有数据。
 
 ## Gallery 预览

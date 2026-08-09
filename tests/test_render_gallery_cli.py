@@ -99,3 +99,53 @@ def test_json_requires_list_mode():
 
     assert result.returncode == 2
     assert "--json requires --list" in result.stderr
+
+
+def test_render_gallery_can_select_templates(tmp_path):
+    out = tmp_path / "gallery"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--out",
+            str(out),
+            "--formats",
+            "png",
+            "--templates",
+            "line_trend,heatmap_matrix",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert sorted(path.name for path in out.glob("*.png")) == [
+        "heatmap_matrix.png",
+        "line_trend.png",
+    ]
+    payload = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
+    assert payload["templateCount"] == 2
+    assert [item["id"] for item in payload["templates"]] == [
+        "line_trend",
+        "heatmap_matrix",
+    ]
+
+
+def test_render_gallery_rejects_unknown_template(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--out",
+            str(tmp_path),
+            "--templates",
+            "line_trend,not_a_template",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 2
+    assert "Unknown template(s): not_a_template" in result.stderr

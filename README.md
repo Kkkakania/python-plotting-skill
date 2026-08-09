@@ -36,6 +36,12 @@ python scripts/render_gallery.py --list
 python scripts/render_gallery.py --list --json
 ```
 
+Render a focused subset by template id:
+
+```bash
+python scripts/render_gallery.py --templates line_trend,heatmap_matrix --formats png
+```
+
 The renderer writes deterministic PNG and SVG outputs. It does not read private
 data by default.
 
