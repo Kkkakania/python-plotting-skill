@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `render_gallery.py --list --match` for case-insensitive catalog search
+  across template ids, titles, intended tasks, and documented risks.
 - Added `gantt_timeline` for simple task timelines with deterministic synthetic
   project dates and Matplotlib date ticks.
 - Added `shared_colorbar_panels` for comparing heatmap panels on one shared

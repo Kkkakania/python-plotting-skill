@@ -34,7 +34,11 @@ Inspect the template catalog without rendering figures:
 ```bash
 python scripts/render_gallery.py --list
 python scripts/render_gallery.py --list --json
+python scripts/render_gallery.py --list --match "confidence band"
 ```
+
+`--match` searches template ids, titles, tasks, and risk notes without
+rendering. It is case-insensitive and also works with `--json`.
 
 Render a focused subset by template id:
 

@@ -28,7 +28,10 @@ bash scripts/release_check.sh
 ```bash
 python scripts/render_gallery.py --list
 python scripts/render_gallery.py --list --json
+python scripts/render_gallery.py --list --match "confidence band"
 ```
+
+`--match` 会在模板 id、标题、任务说明和风险提示中做不区分大小写的筛选，不会触发渲染，也可以和 `--json` 一起使用。
 
 按模板 ID 只渲染本次需要的子集：
 
