@@ -490,10 +490,11 @@ def write_manifest(out_dir: Path, formats: list[str], templates: list[dict[str, 
     (out_dir / "manifest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
-def catalog_payload() -> dict[str, object]:
+def catalog_payload(templates: list[dict[str, object]] | None = None) -> dict[str, object]:
+    selected = list(TEMPLATES) if templates is None else templates
     return {
         "schemaVersion": 1,
-        "templateCount": len(TEMPLATES),
+        "templateCount": len(selected),
         "templates": [
             {
                 "id": str(template["id"]),
@@ -501,7 +502,7 @@ def catalog_payload() -> dict[str, object]:
                 "task": str(template["task"]),
                 "risk": str(template["risk"]),
             }
-            for template in TEMPLATES
+            for template in selected
         ],
     }
 
@@ -536,23 +537,42 @@ def select_templates(raw: str | None) -> list[dict[str, object]]:
     return [by_id[template_id] for template_id in requested]
 
 
+def filter_templates(query: str) -> list[dict[str, object]]:
+    needle = query.strip().casefold()
+    if not needle:
+        raise ValueError("--match must not be empty")
+    fields = ("id", "title", "task", "risk")
+    return [
+        template
+        for template in TEMPLATES
+        if any(needle in str(template[field]).casefold() for field in fields)
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Render clean-room Python plotting gallery examples.")
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output directory.")
     parser.add_argument("--formats", default="png,svg", help="Comma-separated formats: png,svg,pdf.")
     parser.add_argument("--list", action="store_true", help="List template ids and exit.")
     parser.add_argument("--json", action="store_true", help="Emit --list output as machine-readable JSON.")
+    parser.add_argument("--match", help="Filter --list by id, title, task, or risk.")
     parser.add_argument("--templates", help="Comma-separated template ids to render.")
     args = parser.parse_args()
 
     if args.json and not args.list:
         parser.error("--json requires --list")
+    if args.match is not None and not args.list:
+        parser.error("--match requires --list")
 
     if args.list:
+        try:
+            templates = filter_templates(args.match) if args.match is not None else list(TEMPLATES)
+        except ValueError as exc:
+            parser.error(str(exc))
         if args.json:
-            print(json.dumps(catalog_payload(), indent=2))
+            print(json.dumps(catalog_payload(templates), indent=2))
             return 0
-        for template in TEMPLATES:
+        for template in templates:
             print(f"{template['id']}: {template['task']}")
         return 0
 

@@ -101,6 +101,59 @@ def test_json_requires_list_mode():
     assert "--json requires --list" in result.stderr
 
 
+def test_list_can_filter_catalog_by_task_and_risk():
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--list",
+            "--match",
+            "SEASONAL",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.splitlines() == [
+        "line_trend: Show one trend over time.",
+    ]
+
+
+def test_list_json_reports_filtered_template_count():
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_gallery.py"),
+            "--list",
+            "--json",
+            "--match",
+            "confidence band",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    payload = json.loads(result.stdout)
+    assert result.returncode == 0
+    assert payload["templateCount"] == 1
+    assert [item["id"] for item in payload["templates"]] == ["confidence_band"]
+
+
+def test_match_requires_list_mode():
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "render_gallery.py"), "--match", "trend"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert result.returncode == 2
+    assert "--match requires --list" in result.stderr
+
+
 def test_render_gallery_can_select_templates(tmp_path):
     out = tmp_path / "gallery"
     result = subprocess.run(
