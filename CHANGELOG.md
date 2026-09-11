@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Gallery checks now report a concise validation error when `manifest.json`
+  has a non-object root instead of terminating with a Python traceback.
 - Added `render_gallery.py --list --match` for case-insensitive catalog search
   across template ids, titles, intended tasks, and documented risks.
 - Added `gantt_timeline` for simple task timelines with deterministic synthetic

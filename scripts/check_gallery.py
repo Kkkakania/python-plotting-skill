@@ -54,16 +54,19 @@ def main() -> int:
         except json.JSONDecodeError as exc:
             errors.append(f"{manifest_path}: invalid JSON: {exc.msg}")
         else:
-            if manifest.get("schemaVersion") != 1:
-                errors.append(f"{manifest_path}: unsupported schemaVersion")
-            if manifest.get("generatedBy") != "scripts/render_gallery.py":
-                errors.append(f"{manifest_path}: unexpected generator")
-            if manifest.get("templateCount") != len(TEMPLATES):
-                errors.append(f"{manifest_path}: templateCount drift")
-            if manifest.get("formats") != formats:
-                errors.append(f"{manifest_path}: format list drift")
-            if manifest.get("templates") != expected_manifest_templates(formats):
-                errors.append(f"{manifest_path}: manifest template catalog drift")
+            if not isinstance(manifest, dict):
+                errors.append(f"{manifest_path}: manifest root must be an object")
+            else:
+                if manifest.get("schemaVersion") != 1:
+                    errors.append(f"{manifest_path}: unsupported schemaVersion")
+                if manifest.get("generatedBy") != "scripts/render_gallery.py":
+                    errors.append(f"{manifest_path}: unexpected generator")
+                if manifest.get("templateCount") != len(TEMPLATES):
+                    errors.append(f"{manifest_path}: templateCount drift")
+                if manifest.get("formats") != formats:
+                    errors.append(f"{manifest_path}: format list drift")
+                if manifest.get("templates") != expected_manifest_templates(formats):
+                    errors.append(f"{manifest_path}: manifest template catalog drift")
 
     if errors:
         for error in errors:
